@@ -142,9 +142,12 @@ function ReactHeader() {
                 <Link role="button" className="nav-link" tabIndex="0" to="/">
                   Home
                 </Link>
-                <NavDropdown title="Shop" id="basic-nav-dropdown">
+                <Link role="button" className="nav-link" tabIndex="1" to="/home/products">
+                  Products
+                </Link>
+                {/* <NavDropdown title="Shop" id="basic-nav-dropdown">
                   <DropdownComp />
-                </NavDropdown>
+                </NavDropdown> */}
                 {/* <input type="text" name="search" className="" /> */}
               </Nav>
               <Form className="d-flex"></Form>

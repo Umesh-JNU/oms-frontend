@@ -5,7 +5,7 @@ import useGeoLocation from "react-ipgeolocation";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 
-import { Header, Footer, NotAllowed, NotFound, Home, SignIn, Profile, Addresses, FaqPage } from "./components";
+import { Header, Footer, NotAllowed, NotFound, Home, SignIn, Profile, Addresses, ProductList, FaqPage } from "./components";
 
 // import ProductList from "./components/ProductList";
 // import ProductDetails from "./components/ProductDetails";
@@ -25,6 +25,7 @@ const comp = [
   { path: "/", comp: <Home /> },
   { path: "/home/sign-in", comp: <SignIn /> },
   { path: "/home/faq", comp: <FaqPage /> },
+  { path: "/home/products", comp: <ProductList /> },
   { path: "/restricted", comp: <NotAllowed /> },
   { path: "*", comp: <NotFound /> }
 ];

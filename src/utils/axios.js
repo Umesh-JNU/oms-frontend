@@ -1,12 +1,10 @@
 import axios from "axios";
 
-const instance = axios.create({
-  baseURL: "http://localhost:5000"
-  // baseURL: "https://boston-api.adaptable.app"
+const axiosInstance = axios.create({
+  // baseURL: "http://localhost:5000", // localhost
+ baseURL: "https://oms-backend.adaptable.app" // hosted
 });
 
-
-export default instance;
-
+export default axiosInstance;
 
 // PL<okm_)(-09

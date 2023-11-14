@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import Product from "./layout/Product";
 import SideCate from "./layout/SideCate";
 import { useDispatch, useSelector } from "react-redux";
-import ModalLayout from "./modal/ModalLayout";
+// import ModalLayout from "./modal/ModalLayout";
 import {
   getProductListFailure,
   getProductListStart,
@@ -335,7 +335,7 @@ const Shop = () => {
         </motion.div>
       )}
 
-      {modal && (
+      {/* {modal && (
         <ModalLayout
           status={"ageCheck"}
           backdrop={"static"}
@@ -351,7 +351,7 @@ const Shop = () => {
             setModal(!modal);
           }}
         />
-      )}
+      )} */}
     </>
   );
 };
