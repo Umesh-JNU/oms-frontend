@@ -40,7 +40,7 @@ import {
 import ReactImageMagnify from "react-image-magnify";
 import ProductDetailsTabs from "./layout/ProductDetailsTabs";
 import RelatedProds from "./layout/RelatedProds";
-import ModalLayout from "./modal/ModalLayout";
+// import ModalLayout from "./modal/ModalLayout";
 import { ageCheckSuccess } from "../features/ageCheckSlice";
 import AlertBox from "./layout/AlertBox";
 
@@ -241,6 +241,27 @@ const ShopProduct = () => {
           exit={{ x: "100%" }}
           transition={{ duration: 0.75, ease: "easeInOut" }}
         >
+          <ReactImageMagnify
+            {...{
+              smallImage: {
+                alt: "image",
+                // isFluidWidth: true,
+                src: "/images/category1.webp",
+                width: 300,
+                height: 300,
+                // sizes: "(min-width: 800px) 2rem",
+                // "(min-width: 800px) 10rem, (min-width: 415px) 50vw, 10rem",
+              },
+              largeImage: {
+                src: "/images/category1.webp",
+                width: 800,
+                height: 800,
+              },
+            }}
+            isHintEnabled={true}
+            hintTextTouch="Long-Touch to Zoom"
+            // enlargedImagePosition="over"
+          />
           {productErr ? (
             <Container style={{ paddingTop: "5rem" }}>
               <AlertBox
@@ -285,7 +306,7 @@ const ShopProduct = () => {
                             smallImage: {
                               alt: "image",
                               // isFluidWidth: true,
-                              src: selectedImg,
+                              src: "/ima",
                               width: 300,
                               height: 300,
                               // sizes: "(min-width: 800px) 2rem",
@@ -392,7 +413,7 @@ const ShopProduct = () => {
                           readonly={true}
                           allowHover={false}
                           allowFraction={true}
-                          // showTooltip
+                        // showTooltip
                         />
                         <p style={{ marginLeft: "1rem" }}>
                           {reviews?.length} ratings
@@ -493,7 +514,7 @@ const ShopProduct = () => {
 
       <ToastContainer />
 
-      {modal && (
+      {/* {modal && (
         <ModalLayout
           status={"ageCheck"}
           backdrop={"static"}
@@ -508,7 +529,7 @@ const ShopProduct = () => {
             setModal(!modal);
           }}
         />
-      )}
+      )} */}
 
       <ToastContainer />
     </>

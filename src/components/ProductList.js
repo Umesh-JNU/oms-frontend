@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState } from "react";
 import { Container, Row, Col, Form, InputGroup, Alert } from "react-bootstrap";
 import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ReactBreadcrumb from "./layout/BreadCrumb";
 import { useGetShopDetailsQuery } from "../features/productsApi";
 import axios from "../utils/axios";
@@ -296,6 +296,8 @@ const Shop = () => {
                     delay={200}
                     ready={!loading && !shopDetailsLoading}
                   >
+                              <Link to="/home/product/demo">GO TO PRODUCT</Link>
+
                     {error ? (
                       <AlertBox
                         type={"danger"}
@@ -306,25 +308,25 @@ const Shop = () => {
                       <>
                         {products?.length > 0
                           ? products?.map(
-                              (item) => (
-                                // item?.subProducts?.map((subItem) => (
-                                <Product
-                                  key={Math.random()}
-                                  item={item}
-                                  // subItem={subItem}
-                                  loading={loading}
-                                />
-                              )
-                              // ))
-                            )
-                          : (searchProduct?.length > 0 ||
-                              products?.length === 0) && (
-                              <AlertBox
-                                type={"danger"}
-                                heading={"Oh snap! Products not found."}
-                                desc={"Products will be added soon!"}
+                            (item) => (
+                              // item?.subProducts?.map((subItem) => (
+                              <Product
+                                key={Math.random()}
+                                item={item}
+                                // subItem={subItem}
+                                loading={loading}
                               />
-                            )}
+                            )
+                            // ))
+                          )
+                          : (searchProduct?.length > 0 ||
+                            products?.length === 0) && (
+                            <AlertBox
+                              type={"danger"}
+                              heading={"Oh snap! Products not found."}
+                              desc={"Products will be added soon!"}
+                            />
+                          )}
                       </>
                     )}
                   </ReactPlaceholder>
