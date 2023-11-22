@@ -44,10 +44,10 @@ import RelatedProds from "./layout/RelatedProds";
 import { ageCheckSuccess } from "../features/ageCheckSlice";
 import AlertBox from "./layout/AlertBox";
 
-const ShopProduct = () => {
+const ProductDetails = () => {
   const [productAddded, setProductAddded] = useState(false);
   const navigate = useNavigate();
-  const { reviews } = useSelector((state) => state.review);
+  // const { reviews } = useSelector((state) => state.review);
 
   const { token } = useSelector((state) => state.auth);
   const { cartItems, isFetching } = useSelector((state) => state.cart);
@@ -69,7 +69,7 @@ const ShopProduct = () => {
 
   const [count, setCount] = useState(1);
   const [category, setCategory] = useState();
-  const [subcategory, setSubcategory] = useState();
+  // const [subcategory, setSubcategory] = useState();
   const [prodPrice, setProdPrice] = useState();
   const [updatedProdPrice, setUpdatedProdPrice] = useState();
   const [selectedQty, setSelectedQty] = useState();
@@ -83,7 +83,7 @@ const ShopProduct = () => {
     try {
       const { data } = await axios(`/api/product/${params?.id}`);
 
-      await dispatch(getProductSuccess(data?.product));
+      dispatch(getProductSuccess(data?.product));
       setSelectedImg(data?.product?.product_images[0]);
     } catch (error) {
       dispatch(getProductFailure(error?.response?.data?.error?.message));
@@ -102,25 +102,25 @@ const ShopProduct = () => {
     }
   }, [token]);
 
-  const getReviews = async () => {
-    dispatch(reviewStart());
+  // const getReviews = async () => {
+  //   dispatch(reviewStart());
 
-    try {
-      const { data } = await axios.get(`/api/review/all/${params?.id}`, {
-        headers: { Authorization: token },
-      });
+  //   try {
+  //     const { data } = await axios.get(`/api/review/all/${params?.id}`, {
+  //       headers: { Authorization: token },
+  //     });
 
-      dispatch(reviewSuccess(data?.reviews));
-    } catch (error) {
-      dispatch(reviewFailure(error?.response?.data?.error?.message));
-    }
-  };
+  //     dispatch(reviewSuccess(data?.reviews));
+  //   } catch (error) {
+  //     dispatch(reviewFailure(error?.response?.data?.error?.message));
+  //   }
+  // };
 
   const { data: categoryData, isLoading: categoryLoading } =
     useGetCategoryQuery(product?.category?._id);
 
-  const { data: subCategoryData, isLoading: subCategoryLoading } =
-    useGetSubCategoryQuery(product?.sub_category?._id);
+  // const { data: subCategoryData, isLoading: subCategoryLoading } =
+  //   useGetSubCategoryQuery(product?.sub_category?._id);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -128,10 +128,11 @@ const ShopProduct = () => {
 
     setCategory(categoryData?.category);
 
-    setSubcategory(subCategoryData?.subCategory);
+    // setSubcategory(subCategoryData?.subCategory);
 
-    getReviews();
-  }, [categoryData?.category, subCategoryData?.subCategory]);
+    // getReviews();
+    // }, [categoryData?.category, subCategoryData?.subCategory]);
+  }, [categoryData?.category]);
 
   useEffect(() => {
     setSubId(
@@ -218,7 +219,7 @@ const ShopProduct = () => {
     );
     setSelectedQty(
       product?.subProducts?.filter((subItem) => subItem?._id === subId)[0]
-        ?.qname
+        ?.quantity?.canada
     );
     setStock(
       product?.subProducts?.filter((subItem) => subItem?._id === subId)[0]
@@ -234,168 +235,112 @@ const ShopProduct = () => {
   return (
     <>
       {!loadingProduct && <ReactBreadcrumb path={`Home / Shop-Product`} />}
-      {(ageCheck || token) && (
-        <motion.div
-          initial={{ x: "-100%" }}
-          animate={{ x: "0%" }}
-          exit={{ x: "100%" }}
-          transition={{ duration: 0.75, ease: "easeInOut" }}
-        >
-          <ReactImageMagnify
-            {...{
-              smallImage: {
-                alt: "image",
-                // isFluidWidth: true,
-                src: "/images/category1.webp",
-                width: 300,
-                height: 300,
-                // sizes: "(min-width: 800px) 2rem",
-                // "(min-width: 800px) 10rem, (min-width: 415px) 50vw, 10rem",
-              },
-              largeImage: {
-                src: "/images/category1.webp",
-                width: 800,
-                height: 800,
-              },
-            }}
-            isHintEnabled={true}
-            hintTextTouch="Long-Touch to Zoom"
-            // enlargedImagePosition="over"
-          />
-          {productErr ? (
-            <Container style={{ paddingTop: "5rem" }}>
-              <AlertBox
-                type={"danger"}
-                heading={"Requested product not found!"}
-                desc={"This product no longer exists."}
-              />
-            </Container>
-          ) : (
-            <Container style={{ paddingTop: "3rem" }}>
-              <Row className="product-content">
-                <ReactPlaceholder
-                  type="media"
-                  color="#F0F0F0"
-                  showLoadingAnimation
-                  rows={7}
-                  ready={
-                    !loadingProduct && !categoryLoading && !subCategoryLoading
-                  }
-                >
-                  <Col md={5} className="">
-                    {/* <Zoom {...zoomOutProperties}> */}
-                    {/* {product?.product_images?.map((each, index) => ( */}
-                    <div
-                      key={Math.random()}
-                      style={{
-                        display: "flex",
-                        width: "100%",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {/* <CardTop key={product?._id} path={each} /> */}
-                      <div className="shop-top-img">
-                        {product?.sale > 0 && (
-                          <div className="top-right">
-                            <span>{product?.sale}%</span>
-                            {/* <span>New</span> */}
-                          </div>
-                        )}
-                        <ReactImageMagnify
-                          {...{
-                            smallImage: {
-                              alt: "image",
-                              // isFluidWidth: true,
-                              src: "/ima",
-                              width: 300,
-                              height: 300,
-                              // sizes: "(min-width: 800px) 2rem",
-                              // "(min-width: 800px) 10rem, (min-width: 415px) 50vw, 10rem",
-                            },
-                            largeImage: {
-                              src: selectedImg,
-                              width: 800,
-                              height: 800,
-                            },
-                          }}
-                          isHintEnabled={true}
-                          hintTextTouch="Long-Touch to Zoom"
-                          enlargedImagePosition="over"
-                        />
-                      </div>
-                    </div>
-                    {/* ))} */}
-                    {/* </Zoom> */}
-                    <Row className="m-0 mt-2">
-                      {product?.product_images?.map((i) => (
-                        <Col
-                          // xs={6}
-                          // sm={4}
-                          // lg={3}
-                          // md={5}
-                          // xl={2}
-                          className="px-0 justify-content-center align-items-center"
-                          // style={{ backgroundColor: "#00000026" }}
-                          key={i}
-                        >
-                          <div className="sub-images">
-                            {/* <CardImg imgPath={i} /> */}
-                            <div className="sub-images">
-                              <img
-                                src={i}
-                                alt=""
-                                onClick={() => setSelectedImg(i)}
-                              />
-                            </div>
-                          </div>
-                        </Col>
-                      ))}
-                      {/* <Col className="px-1" style={{ backgroundColor: "#00000026" }}>
-                  <CardImg imgPath={product?.product_images[0]} />
-                </Col> */}
-                    </Row>
-                  </Col>
-                  <Col md={6}>
-                    <div className="prod-header">
-                      <p className="sub-head-1 m-0">
-                        {/* Vendors<span> / </span> */}
-                        {category?.name}
-                      </p>
-                      <h1 className="sub-head-2">
-                        {product?.name}, {selectedQty}
-                      </h1>
-                    </div>
-                    <div className="divider"></div>
-                    <div className="prod-body">
-                      {product?.sale > 0 ? (
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <div className="old-price">
-                            <span>
-                              <bdi>
-                                <span>$</span>
-                              </bdi>
-                              {prodPrice}
-                              {/* {product?.amount?.toFixed(2)} */}
-                            </span>
-                          </div>
-
-                          <div className="updated-price">
-                            <span>
-                              <bdi>
-                                <span>$</span>
-                              </bdi>
-                              {updatedProdPrice}
-                              {/* {product?.amount?.toFixed(2)} */}
-                            </span>
-                          </div>
+      {/* {(ageCheck || token) && ( */}
+      <motion.div
+        initial={{ x: "-100%" }}
+        animate={{ x: "0%" }}
+        exit={{ x: "100%" }}
+        transition={{ duration: 0.75, ease: "easeInOut" }}
+      >
+        {productErr ? (
+          <Container style={{ paddingTop: "5rem" }}>
+            <AlertBox
+              type={"danger"}
+              heading={"Requested product not found!"}
+              desc={"This product no longer exists."}
+            />
+          </Container>
+        ) : (
+          <Container style={{ paddingTop: "3rem" }}>
+            <Row className="product-content">
+              <ReactPlaceholder
+                type="media"
+                color="#F0F0F0"
+                showLoadingAnimation
+                rows={7}
+                ready={
+                  !loadingProduct && !categoryLoading
+                  // !loadingProduct && !categoryLoading && !subCategoryLoading
+                }
+              >
+                <Col md={5} className="">
+                  {/* <Zoom {...zoomOutProperties}> */}
+                  {/* {product?.product_images?.map((each, index) => ( */}
+                  <div
+                    key={Math.random()}
+                    style={{
+                      display: "flex",
+                      width: "100%",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {/* <CardTop key={product?._id} path={each} /> */}
+                    <div className="shop-top-img">
+                      {product?.sale > 0 && (
+                        <div className="top-right">
+                          <span>{product?.sale}%</span>
+                          {/* <span>New</span> */}
                         </div>
-                      ) : (
-                        <div className="price">
+                      )}
+                      <ReactImageMagnify
+                        {...{
+                          smallImage: {
+                            alt: "image",
+                            // isFluidWidth: true,
+                            src: product?.product_img,
+                            width: 300,
+                            height: 300,
+                            // sizes: "(min-width: 800px) 2rem",
+                            // "(min-width: 800px) 10rem, (min-width: 415px) 50vw, 10rem",
+                          },
+                          largeImage: {
+                            src: product?.product_img,
+                            width: 800,
+                            height: 800,
+                          },
+                        }}
+                        isHintEnabled={true}
+                        hintTextTouch="Long-Touch to Zoom"
+                      // enlargedImagePosition="over"
+                      />
+                    </div>
+                  </div>
+                  {/* ))} */}
+                  {/* </Zoom> */}
+                  {/* <Row className="m-0 mt-2">
+                    <Col className="px-0 justify-content-center align-items-center">
+                      <div className="sub-images">
+                        <div className="sub-images">
+                          <img
+                            src={product?.product_img}
+                            alt=""
+                            onClick={() => setSelectedImg(product.product_img)}
+                          />
+                        </div>
+                      </div>
+                    </Col>
+                  </Row> */}
+                </Col>
+                <Col md={6}>
+                  <div className="prod-header">
+                    <p className="sub-head-1 m-0">
+                      {/* Vendors<span> / </span> */}
+                      {category?.name}
+                    </p>
+                    <h1 className="sub-head-2">
+                      {product?.name}, {selectedQty}
+                    </h1>
+                  </div>
+                  <div className="divider"></div>
+                  <div className="prod-body">
+                    {product?.sale > 0 ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                      >
+                        <div className="old-price">
                           <span>
                             <bdi>
                               <span>$</span>
@@ -404,113 +349,137 @@ const ShopProduct = () => {
                             {/* {product?.amount?.toFixed(2)} */}
                           </span>
                         </div>
-                      )}
 
-                      <div className="product-rating">
-                        <Rating
-                          initialValue={product?.rating}
-                          // size={16}
-                          readonly={true}
-                          allowHover={false}
-                          allowFraction={true}
-                        // showTooltip
-                        />
-                        <p style={{ marginLeft: "1rem" }}>
-                          {reviews?.length} ratings
-                        </p>
+                        <div className="updated-price">
+                          <span>
+                            <bdi>
+                              <span>$</span>
+                            </bdi>
+                            {updatedProdPrice}
+                            {/* {product?.amount?.toFixed(2)} */}
+                          </span>
+                        </div>
                       </div>
-                      {/* <div className="prod-desc">
+                    ) : (
+                      <div className="price">
+                        <span>
+                          <bdi>
+                            <span>$</span>
+                          </bdi>
+                          {prodPrice}
+                          {/* {product?.amount?.toFixed(2)} */}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* <div className="product-rating">
+                      <Rating
+                        initialValue={product?.rating}
+                        // size={16}
+                        readonly={true}
+                        allowHover={false}
+                        allowFraction={true}
+                        style={{ zIndex: -1 }}
+                      // showTooltip
+                      />
+                      <p style={{ marginLeft: "1rem" }}>
+                        {reviews?.length} ratings
+                      </p>
+                    </div> */}
+                    {/* <div className="prod-desc">
                       <p>{product?.description}</p>
                     </div> */}
-                      <div className="prod-qty-select-cont">
-                        <p>You can change the product quantity from here</p>
-                        <Form.Select
-                          aria-label="Default select example"
-                          onChange={(e) => {
-                            setSubId(e.target.value);
-                          }}
-                          className="prod-qty-select"
-                        >
-                          {product?.subProducts?.map((subItem) => (
-                            <option value={subItem?._id} key={subItem?._id}>
-                              {subItem?.qname}
-                            </option>
-                          ))}
-                        </Form.Select>
-                        <p>Selected quantity: {selectedQty}</p>
+                    <div className="prod-qty-select-cont">
+                      <p>You can change the product quantity from here</p>
+                      <Form.Select
+                        aria-label="Default select example"
+                        onChange={(e) => {
+                          setSubId(e.target.value);
+                        }}
+                        className="prod-qty-select"
+                      >
+                        {product?.subProducts?.map((subItem) => (
+                          <option value={subItem?._id} key={subItem?._id}>
+                            {subItem?.quantity.canada} ml
+                          </option>
+                        ))}
+                      </Form.Select>
+                      <p>Selected quantity: {selectedQty} ml</p>
+                    </div>
+                    <div className="prod-btn-box">
+                      <div className="prod-btn-box-1">
+                        <div onClick={() => handleCount("dec")}>-</div>
+                        <span>{count}</span>
+                        <div onClick={() => handleCount("inc")}>+</div>
                       </div>
-                      <div className="prod-btn-box">
-                        <div className="prod-btn-box-1">
-                          <div onClick={() => handleCount("dec")}>-</div>
-                          <span>{count}</span>
-                          <div onClick={() => handleCount("inc")}>+</div>
-                        </div>
-                        <div className="prod-btn-box-2">
-                          {token ? (
-                            productAddded || !stock ? (
-                              <Button disabled variant="dark">
-                                Add to cart
-                              </Button>
-                            ) : isFetching ? (
-                              <Button variant="dark" size="lg" disabled>
-                                <Spinner animation="border" variant="light" />
-                              </Button>
-                            ) : (
-                              <Button
-                                onClick={() =>
-                                  handleCart(product, count, product?.amount)
-                                }
-                                variant="dark"
-                              >
-                                Add to cart
-                              </Button>
-                            )
+                      <div className="prod-btn-box-2">
+                        {token ? (
+                          productAddded || !stock ? (
+                            <Button disabled variant="dark">
+                              Add to cart
+                            </Button>
+                          ) : isFetching ? (
+                            <Button variant="dark" size="lg" disabled>
+                              <Spinner animation="border" variant="light" />
+                            </Button>
                           ) : (
                             <Button
-                              onClick={() => navigate("/home/sign-in")}
+                              onClick={() =>
+                                handleCart(product, count, product?.amount)
+                              }
                               variant="dark"
                             >
-                              Sign in!
+                              Add to cart
                             </Button>
-                          )}
-                        </div>
-                        {productAddded && <i>Added to cart</i>}
-                        {!stock && <i style={{ color: "red" }}>Out of stock</i>}
+                          )
+                        ) : (
+                          <Button
+                            onClick={() => navigate("/home/sign-in")}
+                            variant="dark"
+                          >
+                            Sign in!
+                          </Button>
+                        )}
                       </div>
+                      {productAddded && <i>Added to cart</i>}
+                      {!stock && <i style={{ color: "red" }}>Out of stock</i>}
                     </div>
-                    <div className="prod-footer mt-2">
-                      <ReactPlaceholder
-                        type="text"
-                        color="#F0F0F0"
-                        showLoadingAnimation
-                        rows={1}
-                        ready={!categoryLoading && !subCategoryLoading}
-                      >
-                        <p>
-                          Categories: {category?.name} / {subcategory?.name}
-                        </p>
-                      </ReactPlaceholder>
-                    </div>
-                  </Col>
-                </ReactPlaceholder>
-              </Row>
+                  </div>
+                  <div className="prod-footer mt-2">
+                    <ReactPlaceholder
+                      type="text"
+                      color="#F0F0F0"
+                      showLoadingAnimation
+                      rows={1}
+                      ready={!categoryLoading}
+                      // ready={!categoryLoading && !subCategoryLoading}
+                    >
+                      <p>
+                        Categories: {category?.name}
+                        {/* Categories: {category?.name} / {subcategory?.name} */}
+                      </p>
+                    </ReactPlaceholder>
+                  </div>
+                </Col>
+              </ReactPlaceholder>
+            </Row>
 
-              <ProductDetailsTabs
-                loadingProduct={loadingProduct}
-                product={product}
-              />
+            <ProductDetailsTabs
+              loadingProduct={loadingProduct}
+              product={product}
+            />
 
-              <hr />
+            <hr />
 
-              <RelatedProds
-                categoryLoading={categoryLoading}
-                subCategoryLoading={subCategoryLoading}
-                categoryId={product?.category?._id}
-              />
-            </Container>
-          )}
-        </motion.div>
-      )}
+            <RelatedProds
+              categoryLoading={categoryLoading}
+              // subCategoryLoading={subCategoryLoading}
+              categoryId={product?.category?._id}
+            />
+          </Container>
+        )}
+      </motion.div>
+      {/* )} */}
 
       <ToastContainer />
 
@@ -536,4 +505,4 @@ const ShopProduct = () => {
   );
 };
 
-export default ShopProduct;
+export default ProductDetails;

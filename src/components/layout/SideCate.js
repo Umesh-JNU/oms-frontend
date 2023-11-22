@@ -15,6 +15,7 @@ const SideCate = ({
 }) => {
   const navigate = useNavigate();
 
+  console.log({ categories })
   return (
     <Col lg={3}>
       <aside>
@@ -33,14 +34,16 @@ const SideCate = ({
                   onClick={() => {
                     setSearchProduct("");
                     setShowList(!showList);
-                    navigate(`/shop/${category?._id?.cat_id}`);
+                    // navigate(`/shop/${category?._id?.cat_id}`);
+                    navigate(`/home/products/?category=${encodeURIComponent(category?.name)}`);
                   }}
                   key={category?._id}
                   className="side-link"
                 >
-                  <span>{category?._id?.name}</span>
+                  <span>{category?.name}</span>
+                  {/* <span>{category?._id?.name}</span> */}
                 </li>
-                <span>
+                {/* <span>
                   {category?.subCategories?.map((subCate) => (
                     <li
                       key={subCate?._id}
@@ -53,7 +56,7 @@ const SideCate = ({
                       {subCate?.name}
                     </li>
                   ))}
-                </span>
+                </span> */}
               </>
             ))}
           </ReactPlaceholder>

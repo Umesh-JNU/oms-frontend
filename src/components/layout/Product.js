@@ -13,7 +13,7 @@ const Product = ({ item, subItem, loading }) => {
       <div
         className="products-container"
         onClick={() =>
-          navigate(`/home/${item?._id}?subId=${item?.subProducts[0]?._id}`)
+          navigate(`/home/product/${item?._id}/?subId=${item?.subProducts[0]?._id}`)
         }
         // onClick={() => navigate(`/home/${item?._id}?subId=${subItem?._id}`)}
       >
@@ -25,7 +25,8 @@ const Product = ({ item, subItem, loading }) => {
           ready={!loading}
           key={item?._id}
         >
-          <CardTop sale={item?.sale} path={item?.product_images[0]} />
+          {/* <CardTop sale={item?.sale} path={item?.product_images[0]} /> */}
+          <CardTop sale={item?.sale} path={item?.product_img} />
           <div className="product-detail">
             <div className="prods-sub-details">
               <p className="mb-0" style={{ fontWeight: 600 }}>

@@ -11,6 +11,7 @@ import { useGetCategoryQuery } from "../features/productsApi";
 import { useNavigate } from "react-router-dom";
 
 const CartItem = ({ cartItem }) => {
+  console.log({ cartItem });
   const { isFetching, inSalePrice } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [count, setCount] = useState(cartItem?.quantity);
@@ -70,29 +71,17 @@ const CartItem = ({ cartItem }) => {
         <Row>
           <Col>
             <img
-              src={cartItem?.product?.pid?.product_images[0]}
+              src={cartItem?.product?.pid?.product_img}
+              // src={cartItem?.product?.pid?.product_images[0]}
               alt="productImage"
               className="cart-item-img"
             />
-            {/* <CardImg imgPath={cartItem?.product?.product_images[0]} /> */}
           </Col>
           <Col>
             {isFetching ? (
               <div className="overlay-cart">
-                <p
-                  className="cart-prod-name"
-                  // onClick={() => navigate(`/home/${cartItem?.product?._id}`)}
-                >
-                  {cartItem?.product?.pid?.name}
-                </p>
-                <p
-                  className="cart-prod-cate"
-                  // onClick={() =>
-                  //   navigate(`/shop/${cartItem?.product?.category}`)
-                  // }
-                >
-                  {category?.name}
-                </p>
+                <p className="cart-prod-name">{cartItem?.product?.pid?.name}</p>
+                <p className="cart-prod-cate">{category?.name}</p>
                 <div className="cart-prod-subProd">
                   <div>
                     {inSalePrice?.filter(
@@ -128,19 +117,13 @@ const CartItem = ({ cartItem }) => {
               <>
                 <p
                   className="cart-prod-name"
-                  onClick={() =>
-                    navigate(
-                      `/home/${cartItem?.product?.pid?._id}?subId=${cartItem?.product?._id}`
-                    )
-                  }
+                  onClick={() => navigate(`/home/product/${cartItem?.product?.pid?._id}?subId=${cartItem?.product?._id}`)}
                 >
                   {cartItem?.product?.pid?.name}
                 </p>
                 <p
                   className="cart-prod-cate"
-                  onClick={() =>
-                    navigate(`/shop/${cartItem?.product?.pid?.category}`)
-                  }
+                  onClick={() => navigate(`/shop/${cartItem?.product?.pid?.category}`)}
                 >
                   {category?.name}
                 </p>

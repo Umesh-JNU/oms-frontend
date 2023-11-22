@@ -81,7 +81,7 @@ const Order = () => {
           <Row className="order-conf">
             {!orderErr && (
               <>
-                <Col md={6}>
+                {/* <Col md={6}>
                   <div className="order-left-sec">
                     <div className="order-left-info">
                       <p>
@@ -309,8 +309,9 @@ const Order = () => {
                       </div>
                     </div>
                   </div>
-                </Col>
-                <Col md={6}>
+                </Col> */}
+                {/* <Col md={6}> */}
+                <Col>
                   <div className="order-confirmation-box">
                     <div className="order-right-sec">
                       <p style={{ color: "orange", fontWeight: "600" }}>
@@ -343,9 +344,9 @@ const Order = () => {
                             <li>
                               Total: <b>${orderDetails?.amount?.toFixed(2)}</b>
                             </li>
-                            <li>
+                            {/* <li>
                               Payment method: <b>Interac e-Transfer</b>
-                            </li>
+                            </li> */}
                           </ul>
                         </div>
                       </ReactPlaceholder>

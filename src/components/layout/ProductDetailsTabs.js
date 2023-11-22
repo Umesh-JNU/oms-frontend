@@ -60,7 +60,7 @@ const ProductDetailsTabs = ({ loadingProduct, product }) => {
             <p className="tab-desc">{product?.description}</p>
           </ReactPlaceholder>
         </Tab>
-        <Tab
+        {/* <Tab
           eventKey="reviews"
           title={`Reviews (${reviews?.length})`}
           // onEnter={() => getReviews()}
@@ -95,7 +95,7 @@ const ProductDetailsTabs = ({ loadingProduct, product }) => {
                             allowHover={false}
                             allowFraction={true}
                           />
-                          {/* <b className="review-title">{review?.title}</b> */}
+                          // <b className="review-title">{review?.title}</b> 
                         </span>
 
                         <p className="review-date">
@@ -147,7 +147,7 @@ const ProductDetailsTabs = ({ loadingProduct, product }) => {
               </>
             )}
           </Button>
-        </Tab>
+        </Tab> */}
       </Tabs>
     </Row>
   );

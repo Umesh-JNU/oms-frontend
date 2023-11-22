@@ -34,12 +34,8 @@ const formatText = (text) => {
 };
 
 const Cart = () => {
-  const { isFetching, cartItems, cartTotalAmount } = useSelector(
-    (state) => state.cart
-  );
-  const { loading, shippingDetails, error } = useSelector(
-    (state) => state.shippingDetails
-  );
+  const { isFetching, cartItems, cartTotalAmount } = useSelector((state) => state.cart);
+  const { loading, shippingDetails, error } = useSelector((state) => state.shippingDetails);
 
   const { token } = useSelector((state) => state.auth);
   const [cart, setCart] = useState([]);
@@ -110,26 +106,9 @@ const Cart = () => {
                 cart={true}
                 onHome={true}
               />
-              {/* <Alert variant="dark">
-                {cartItems?.length === 1 ? (
-                  <div className="alert-box-content">
-                    <AiOutlineInfoCircle style={{ marginRight: "0.5rem" }} />
-                    <p>
-                      You have <b>{cartItems?.length}</b> item in your cart
-                    </p>
-                  </div>
-                ) : (
-                  <div className="alert-box-content">
-                    <AiOutlineInfoCircle style={{ marginRight: "0.5rem" }} />
-                    <p>
-                      You have <b>{cartItems?.length}</b> items in your cart
-                    </p>
-                  </div>
-                )}
-              </Alert> */}
             </div>
 
-            <ReactPlaceholder
+            {/* <ReactPlaceholder
               type="text"
               color="#F0F0F0"
               showLoadingAnimation
@@ -170,47 +149,14 @@ const Cart = () => {
                         }}
                       ></div>
                     </div>
-                    {/* <p>{shippingDetail?.description}</p> */}
                   </div>
                 ))}
               </div>
-            </ReactPlaceholder>
-
-            {/* {cartTotalAmount < 60 && (
-              <div className="cart-alert-box">
-                <Alert variant="danger">
-                  <div className="alert-box-content-cart-total">
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <p>
-                        <b>
-                          A Minimum of $CAD60.00 is required before checking
-                          out.
-                        </b>
-                      </p>
-                    </div>
-                    <p>
-                      Current cart's total: $CAD
-                      {cartTotalAmount?.toFixed(2)}
-                    </p>
-                  </div>
-                </Alert>
-              </div>
-            )} */}
+            </ReactPlaceholder> */}
           </div>
+
           <Row className="product-content justify-content-center">
             <Col md={"auto"} lg={7} className="px-md-5">
-              {/* <ReactPlaceholder
-                type="text"
-                color="#F0F0F0"
-                showLoadingAnimation
-                rows={7}
-                ready={!isFetching}
-              > */}
               {!isFetching && cart?.length === 0 ? (
                 <div className="cart-alert-box">
                   <AlertBox
@@ -228,31 +174,6 @@ const Cart = () => {
                     }
                     cart={true}
                   />
-                  {/* <Alert variant="dark">
-                    <Alert.Heading>
-                      <p>Your cart is currently empty!</p>
-                    </Alert.Heading>
-                    <hr />
-
-                    <p className="mt-4 mb-4">
-                      Before proceed to checkout you must add some products to
-                      your shopping cart.
-                    </p>
-
-                    <hr />
-                    <Alert.Link
-                      as="button"
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "none",
-                        outline: "none",
-                      }}
-                      onClick={() => navigate("/")}
-                      className="no-prod-link"
-                    >
-                      <span>Go to home</span>
-                    </Alert.Link>
-                  </Alert> */}
                 </div>
               ) : (
                 <Row className="m-0">
@@ -261,8 +182,8 @@ const Cart = () => {
                   ))}
                 </Row>
               )}
-              {/* </ReactPlaceholder> */}
             </Col>
+
             <Col md={8} lg={5}>
               <h3 className="mb-3 mt-4">Cart Totals</h3>
               <div className="cart-detail-table">
@@ -289,67 +210,6 @@ const Cart = () => {
                       </ReactPlaceholder>
                     </div>
                   </div>
-                  {/* <tr>
-                    <td>
-                      <h6>SHIPPING</h6>
-                    </td>
-                    <td></td>
-                    <td>
-                      <span>
-                        Shipping costs will be calculated once you have provided
-                        address.
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                      <div className="shipping-detail">
-                        <h6 className="mt-4">CALCULATE SHIPPING</h6>
-                        <div>
-                          <div className="cart-select-city">
-                            
-
-                            <div className="cart-addr-holder">
-                              {addresses?.map((address) => (
-                                <div
-                                  key={address?._id}
-                                  className="cart-addre-cont"
-                                >
-                                  <Form.Check
-                                    type={"radio"}
-                                    onChange={(e) =>
-                                      setTownCity(e.target.value)
-                                    }
-                                    checked={townCity === address?.town}
-                                    value={address?.town}
-                                    label={
-                                      <>
-                                        <p>{address?.province}</p>
-                                        <p>{address?.street}</p>
-                                        <p>{address?.town}</p>
-                                        <p>{address?.post_code}</p>
-                                      </>
-                                    }
-                                  />
-                                </div>
-                              ))}
-                            </div>
-
-                            {townCity?.length > 0 && (
-                              <p className="cart-selected-city">
-                                Selected town/city: {townCity}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                        <Button className="update-btn" variant="dark">
-                          UPDATE TOTAL
-                        </Button>
-                      </div>
-                    </td>
-                  </tr> */}
                 </>
               </div>
               <h5
@@ -372,8 +232,6 @@ const Cart = () => {
                 </ReactPlaceholder>
               </h5>
               {cartItems.length > 0 ? (
-                // &&
-                // townCity?.length > 0
                 <Button
                   className="proceed-btn btn-dark"
                   onClick={() => navigate("/home/checkout-address")}
@@ -391,13 +249,6 @@ const Cart = () => {
             </Col>
           </Row>
 
-          {/* <div className="coupon-sec">
-            <div className="coupon-code-box">
-              <p className="pt-3 pb-2">Coupon Code</p>
-              <div className="p-divider"></div>
-            </div>
-            <Button className="btn-dark">Apply Coupon</Button>
-          </div> */}
         </Container>
       </motion.div>
       <ToastContainer />

@@ -5,10 +5,8 @@ import useGeoLocation from "react-ipgeolocation";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 
-import { Header, Footer, NotAllowed, NotFound, Home, SignIn, Profile, Addresses, ProductList, ProductDetails, FaqPage } from "./components";
+import { Header, Footer, NotAllowed, NotFound, Home, SignIn, Profile, Addresses, AllOrders, Order, ProductList, ProductDetails, Cart, Checkout, CheckoutAddr, FaqPage } from "./components";
 
-// import ProductList from "./components/ProductList";
-// import ProductDetails from "./components/ProductDetails";
 // import Cart from "./components/Cart";
 // import Checkout from "./components/Checkout";
 // import Profile from "./components/Profile.js";
@@ -34,9 +32,15 @@ const comp = [
 const protectComp = [
   { path: "/home/my-account", comp: <Profile /> },
   { path: "/home/my-address", comp: <Addresses /> },
-  // { path: "", comp: },
-  // { path: "", comp: },
+  { path: "/home/my-orders", comp: <AllOrders /> },
+  { path: "/home/order", comp: <Order /> },
+  { path: "/home/cart", comp: <Cart /> },
+  { path: "/home/checkout-address", comp: <CheckoutAddr /> },
+  { path: "/home/checkout", comp: <Checkout /> },
+  // { path: "/home/my-coupons", comp: <MyCoupons /> },
+  // { path: "/review/review-your-purchase/:id", comp: <AddReview /> }
 ];
+
 function App() {
   const dispatch = useDispatch();
   const pageLocation = useLocation();
@@ -76,93 +80,6 @@ function App() {
               }
             />
           ))}
-          {/* <Route
-              path="/shop/:id"
-              element={
-                <>
-                  <ProductList />
-                </>
-              }
-            /> */}
-
-          {/* <Route
-              path="/home/:id"
-              element={
-                <>
-                  <ProductDetails />
-                </>
-              }
-            />
-            <Route
-              path="/home/cart"
-              element={
-                <ProtectedRoute>
-                  <Cart />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/home/checkout"
-              element={
-                <ProtectedRoute>
-                  <Checkout />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/home/checkout-address"
-              element={
-                <ProtectedRoute>
-                  <CheckoutAddr />
-                </ProtectedRoute>
-              }
-            /> 
-            <Route
-              path="/home/my-account"
-              element={
-                
-              }
-            />
-            <Route
-              path="/home/my-address"
-              element={
-                <ProtectedRoute>
-                  <Addresses />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/home/my-coupons"
-              element={
-                <ProtectedRoute>
-                  <MyCoupons />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/home/order"
-              element={
-                <ProtectedRoute>
-                  <Order />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/home/my-orders"
-              element={
-                <ProtectedRoute>
-                  <AllOrders />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/review/review-your-purchase/:id"
-              element={
-                <ProtectedRoute>
-                  <AddReview />
-                </ProtectedRoute>
-              }
-            /> */}
         </Routes>
       </AnimatePresence>
       <Footer />

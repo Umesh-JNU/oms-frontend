@@ -258,7 +258,8 @@ const AllOrders = () => {
                                         <img
                                           src={
                                             product?.parent_prod
-                                              ?.product_images[0]
+                                              ?.product_img
+                                              // ?.product_images[0]
                                           }
                                           alt=""
                                         />
@@ -360,10 +361,10 @@ const AllOrders = () => {
                                 <p>
                                   Order Number: <span>{order?.orderId}</span>
                                 </p>
-                                <p className="order-id-info">
+                                {/* <p className="order-id-info">
                                   (Please use this order number for payment
                                   purpose!)
-                                </p>
+                                </p> */}
                               </div>
                             </Row>
                           </div>

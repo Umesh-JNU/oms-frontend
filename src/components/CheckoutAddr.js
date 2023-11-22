@@ -33,7 +33,7 @@ import {
 } from "../features/setChecAddr";
 import { TbRosetteNumber1 } from "react-icons/tb";
 import { ImSad } from "react-icons/im";
-import ModalLayout from "./modal/ModalLayout";
+import { ModalLayout } from "./layout";
 import { AiOutlinePlus } from "react-icons/ai";
 
 const CheckoutAddr = () => {
@@ -161,6 +161,7 @@ const CheckoutAddr = () => {
         }
       );
 
+      console.log("calc shipping", { data })
       await dispatch(
         updateSuccess({
           charges: data?.charge,
@@ -208,20 +209,9 @@ const CheckoutAddr = () => {
           </div>
 
           <div>
-            {/* <div>
-              <h6>SHIPPING</h6>
-            </div> */}
-            <div>
-              <span className="checkout-addr-span">
-                Shipping costs will be calculated once you have provided
-                address.
-              </span>
-            </div>
-          </div>
-          <div>
             <div>
               <div className="shipping-detail">
-                <h6 className="mt-4">CALCULATE SHIPPING</h6>
+                {/* <h6 className="mt-4">CALCULATE SHIPPING</h6> */}
                 <div>
                   <ReactPlaceholder
                     type="text"
@@ -290,7 +280,8 @@ const CheckoutAddr = () => {
                     <Button
                       className="update-btn"
                       variant="dark"
-                      onClick={() => handleUpdate()}
+                      // onClick={() => navigate("/home/checkout", { replace: true })}
+                    onClick={() => handleUpdate()}
                     >
                       Next
                     </Button>
@@ -308,7 +299,7 @@ const CheckoutAddr = () => {
             </div>
           </div>
         </Container>
-      </motion.div>
+      </motion.div >
 
       <ModalLayout
         show={showAdd}

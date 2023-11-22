@@ -708,12 +708,12 @@ const contentList = [
     det2: "",
     content: <AddressBook />,
   },
-  // {
-  //   name: "Your Orders",
-  //   det1: "Your orders will appear here",
-  //   det2: "",
-  //   content: <AllOrders />,
-  // },
+  {
+    name: "Your Orders",
+    det1: "Your orders will appear here",
+    det2: "",
+    content: <AllOrders />,
+  },
   // {
   //   name: "Refer a friend",
   //   det1: "Exciting news!",

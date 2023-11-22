@@ -29,8 +29,12 @@ import { ageCheckSuccess } from "../features/ageCheckSlice";
 import AlertBox from "./layout/AlertBox";
 
 const Home = () => {
-  // const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
+
+  const { data: categoryData, isLoading: categoryLoading } =
+    useGetAllCategoriesQuery();
   // const { promotions, loadingPromotion, promotionsErr } = useSelector(
   //   (state) => state.promotions
   // );
@@ -47,8 +51,6 @@ const Home = () => {
   );
   const { ageCheck } = useSelector((state) => state.ageCheck);
   const [modal, setModal] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!token && !ageCheck) {
@@ -66,14 +68,6 @@ const Home = () => {
     }
   }, [dispatch, token, ageCheck]);
 
-  // const { data: categoryData, isLoading: categoryLoading } =
-  //   useGetAllCategoriesQuery();
-  const categories = [
-    {name: "Vita Biosa 'Original' from $42.95", category_image: "/images/category1.webp"},
-    {name: "Vita Biosa 'Chaga' from $42.95", category_image: "/images/category2.webp"},
-    {name: "Vita Biosa 'Milk Thistle' from $45.95", category_image: "/images/category4.png"},
-    {name: "Vita Biosa 'Honey Tea' from $45.95", category_image: "/images/category3.webp"}
-  ]
   const fetchOrders = async () => {
     dispatch(ordersStart());
 
@@ -125,7 +119,7 @@ const Home = () => {
     }
 
     carouselDetails();
-  // }, [categoryData, token, ageCheck]);
+    // }, [categoryData, token, ageCheck]);
   }, [token, ageCheck]);
 
   return (
@@ -145,7 +139,7 @@ const Home = () => {
           style={{ width: "60%", margin: "auto" }}
           ready={!loadingPromotion}
         > */}
-          <CustomCarousel promotions={promotions} />
+        <CustomCarousel promotions={promotions} />
         {/* </ReactPlaceholder> */}
         <section className="sec-1">
           <div className="sec-1-heading">
@@ -153,28 +147,28 @@ const Home = () => {
           </div>
           <div className="sec-1-body">
             <Row className="m-0 gap-2 justify-content-center align-items-center">
-              {/* <ReactPlaceholder
+              <ReactPlaceholder
                 type="text"
                 color="#F0F0F0"
                 showLoadingAnimation
                 rows={5}
                 ready={!categoryLoading}
-              > */}
-                {categories?.length <= 0 ? (
-                  <AlertBox
-                    type={"danger"}
-                    heading={"Something went wrong!"}
-                    desc={"We are working on resolving the issue."}
-                    onHome={true}
-                  />
-                ) : (
-                  categories?.map((item) => (
-                    <Col lg={2} md={4} key={item._id}>
-                      <ReactCard item={item} />
-                    </Col>
-                  ))
-                )}
-              {/* </ReactPlaceholder> */}
+              >
+              {categoryData?.categories?.length <= 0 ? (
+                <AlertBox
+                  type={"danger"}
+                  heading={"Something went wrong!"}
+                  desc={"We are working on resolving the issue."}
+                  onHome={true}
+                />
+              ) : (
+                categoryData?.categories?.map((item) => (
+                  <Col lg={2} md={4} key={item._id}>
+                    <ReactCard item={item} />
+                  </Col>
+                ))
+              )}
+              </ReactPlaceholder>
             </Row>
           </div>
         </section>

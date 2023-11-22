@@ -1320,8 +1320,8 @@ p.tab-desc {
 
 .category-img img {
   /* height: 15rem; */
-  width: 20rem !important;
-  height: 17rem !important;
+  /* width: 20rem !important; */
+  height: 10rem !important;
 }
 
 .cart-item-img {
@@ -1534,7 +1534,7 @@ p.tab-desc {
 }
 
 .prod-qty-select {
-  width: 6rem;
+  width: 7rem;
 }
 
 .prod-btn-box {
@@ -2791,7 +2791,7 @@ hr {
 
 @media (min-width: 577px) and (max-width: 767px) {
   .category-img img {
-    width: 18rem !important;
+    /* width: 18rem !important; */
   }
 }
 

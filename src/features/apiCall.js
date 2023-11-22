@@ -154,6 +154,7 @@ export const getCart = async (dispatch) => {
       }
     );
 
+    console.log("getCart", { data })
     const { cartItems, total, inSalePrice } = data;
     dispatch(getCartSuccess({ cartItems, total, inSalePrice }));
   } catch (error) {

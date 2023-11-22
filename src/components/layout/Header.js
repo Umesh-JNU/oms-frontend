@@ -128,9 +128,8 @@ function ReactHeader() {
     <>
       {width > breakpoint ? (
         <Navbar
-          className={`${
-            path.pathname === "/" ? "h-dark" : "h-light header-nav"
-          }`}
+          className={`${path.pathname === "/" ? "h-dark" : "h-light header-nav"
+            }`}
           expand="md"
           sticky="top"
           collapseOnSelect
@@ -142,7 +141,7 @@ function ReactHeader() {
                 <Link role="button" className="nav-link" tabIndex="0" to="/">
                   Home
                 </Link>
-                <Link role="button" className="nav-link" tabIndex="1" to="/home/products">
+                <Link role="button" className="nav-link" tabIndex="1" to="/home/products/?category=">
                   Products
                 </Link>
                 {/* <NavDropdown title="Shop" id="basic-nav-dropdown">
@@ -153,11 +152,9 @@ function ReactHeader() {
               <Form className="d-flex"></Form>
               <>
                 <Navbar.Brand
-                  className={`${
-                    cartItems?.length !== 0 && token && "center-app-logo"
-                  } ${token && cartItems?.length === 0 && "center-logo"} ${
-                    !token && "app-logo"
-                  }`}
+                  className={`${cartItems?.length !== 0 && token && "center-app-logo"
+                    } ${token && cartItems?.length === 0 && "center-logo"} ${!token && "app-logo"
+                    }`}
                 >
                   <Link to="/">
                     <img
@@ -166,9 +163,9 @@ function ReactHeader() {
                       // src={
                       //   path.pathname === "/" ? app_logo_white : app_logo_black
                       // }
-                      width="66"
-                      // height="60"
-                      // className="d-inline-block align-top app-logo"
+                      width="45"
+                    // height="60"
+                    // className="d-inline-block align-top app-logo"
                     />
                     {/* <h5 className="text-logo">Logo</h5> */}
                   </Link>
@@ -176,7 +173,7 @@ function ReactHeader() {
               </>
 
               <Nav className="ms-auto">
-                {/* {token && (
+                {token && (
                   <Link
                     role="button"
                     className="nav-link"
@@ -196,26 +193,25 @@ function ReactHeader() {
                           marginTop: "0.5rem",
                           zIndex: "3",
                         }}
-                      /> */}
-                      {/* {!isFetching && ( */}
-                      {/* <Badge
-                        className={`${
-                          cartItems?.length === 0
-                            ? "no-cart-badge"
-                            : "cart-badge"
-                        }`}
-                        pill
-                        bg={`${path.pathname === "/" ? "light" : "dark"}`}
-                        text={`${path.pathname === "/" && "dark"}`}
-                      >
-                        <p style={{ fontSize: "0.6rem" }}>
-                          {isFetching ? 0 : cartItems?.length}
-                        </p>
-                      </Badge> */}
-                      {/* )} */}
-                    {/* </div>
+                      /> 
+                      {!isFetching && (
+                        <Badge
+                          className={`${cartItems?.length === 0
+                              ? "no-cart-badge"
+                              : "cart-badge"
+                            }`}
+                          pill
+                          bg={`${path.pathname === "/" ? "light" : "dark"}`}
+                          text={`${path.pathname === "/" && "dark"}`}
+                        >
+                          <p style={{ fontSize: "0.6rem" }}>
+                            {isFetching ? 0 : cartItems?.length}
+                          </p>
+                        </Badge>
+                      )}
+                    </div>
                   </Link>
-                )} */}
+                )}
 
                 {token && (
                   <Link
@@ -235,7 +231,7 @@ function ReactHeader() {
                     tabIndex="0"
                     to="/home/checkout-address"
                   >
-                    <div className="checkout-link">checkout</div>
+                    <div className="checkout-link">Checkout</div>
                   </Link>
                 )}
 
@@ -245,7 +241,7 @@ function ReactHeader() {
                     className="nav-link"
                     tabIndex="0"
                     onClick={() => handleLogout()}
-                    // to={"/"}
+                  // to={"/"}
                   >
                     <div
                       className="checkout-link"
@@ -272,9 +268,8 @@ function ReactHeader() {
       ) : (
         <>
           <Navbar
-            className={`${
-              path.pathname === "/" ? "h-dark" : "h-light header-nav"
-            }`}
+            className={`${path.pathname === "/" ? "h-dark" : "h-light header-nav"
+              }`}
             collapseOnSelect
             expand="md"
             sticky="top"
@@ -359,7 +354,7 @@ function ReactHeader() {
                               // cartItems?.length === 0
                               "no-cart-badge-mobile"
                               // : "cart-badge-mobile"
-                            }`}
+                              }`}
                             pill
                             bg="dark"
                           >
@@ -475,8 +470,8 @@ function ReactHeader() {
                   src="/logo192.png"
                   // src={path.pathname === "/" ? app_logo_white : app_logo_black}
                   width="66"
-                  // height="60"
-                  // className="d-inline-block align-top app-logo"
+                // height="60"
+                // className="d-inline-block align-top app-logo"
                 />
               </Link>
             </div>
@@ -484,9 +479,8 @@ function ReactHeader() {
 
           {!scroll && (
             <div
-              className={`${
-                path.pathname === "/" ? "mobile-nav-dark" : "mobile-nav-light"
-              } mobile-nav`}
+              className={`${path.pathname === "/" ? "mobile-nav-dark" : "mobile-nav-light"
+                } mobile-nav`}
             >
               <div className="mobile-nav-icons">
                 <div>
@@ -524,7 +518,7 @@ function ReactHeader() {
                           // cartItems?.length === 0
                           "no-cart-badge-mobile-nav"
                           // : "cart-badge-mobile-nav"
-                        }`}
+                          }`}
                         pill
                         bg={`${path.pathname === "/" ? "light" : "dark"}`}
                         text={`${path.pathname === "/" && "dark"}`}

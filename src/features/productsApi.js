@@ -3,13 +3,19 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const productsApi = createApi({
   reducerPath: "productsApi",
   // baseQuery: fetchBaseQuery({ baseUrl: "https://api.bostongexotics.com" }),
-  baseQuery: fetchBaseQuery({ baseUrl: "https://boston-api.adaptable.app" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://oms-backend.adaptable.app" }),
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: () => "/api/product/all",
     }),
+    getProduct: builder.query({
+      query: (id) => `/api/product/${id}`,
+    }),
     getAllCategories: builder.query({
       query: () => "/api/category/all",
+    }),
+    getCategory: builder.query({
+      query: (id) => `/api/category/${id}`,
     }),
     getAllSubCategories: builder.query({
       query: () => "/api/subCategory/all",
@@ -17,16 +23,9 @@ export const productsApi = createApi({
     getShopDetails: builder.query({
       query: () => "/api/category/all-subCategories",
     }),
-    getProduct: builder.query({
-      query: (id) => `/api/product/${id}`,
-    }),
-    getCategory: builder.query({
-      query: (id) => `/api/category/${id}`,
-    }),
     getSubCategory: builder.query({
       query: (id) => `/api/subCategory/${id}`,
     }),
-
     getRecentProducts: builder.query({
       query: (id) => `/api/product/${id}/get-recent`,
     }),
@@ -35,11 +34,11 @@ export const productsApi = createApi({
 
 export const {
   useGetAllProductsQuery,
-  useGetAllCategoriesQuery,
-  useGetAllSubCategoriesQuery,
   useGetProductQuery,
+  useGetAllCategoriesQuery,
   useGetCategoryQuery,
+  useGetAllSubCategoriesQuery,
+  useGetShopDetailsQuery,
   useGetSubCategoryQuery,
   useGetRecentProductsQuery,
-  useGetShopDetailsQuery,
 } = productsApi;

@@ -17,10 +17,10 @@ function ReactCard({ item }) {
         justifyContent: "center",
         alignItems: "center",
       }}
-      onClick={() => navigate(`/shop/${item?._id}`)}
+      onClick={() => navigate(`/home/products/?category=${encodeURIComponent(item?.name)}`)}
     >
       <div className="category-img">
-        <CardImageBox imgPath={item?.category_image} />
+        <CardImageBox imgPath={item?.category_img} />
       </div>
 
       {/* <Card.Body>
@@ -32,7 +32,7 @@ function ReactCard({ item }) {
         <Button variant="primary">Go somewhere</Button>
       </Card.Body> */}
       <Card.Footer className="category-footer">
-        <h5>{item.name}</h5>
+        <h6>{item.name}</h6>
       </Card.Footer>
     </Card>
   );

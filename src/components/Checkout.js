@@ -26,6 +26,7 @@ const Checkout = () => {
   const { addressCheck, charges, total, message, free_ship } = useSelector(
     (state) => state.address
   );
+  console.log({ addressCheck, total })
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [values, setValues] = useState({
@@ -102,7 +103,7 @@ const Checkout = () => {
         town: data?.address?.town,
         street: data?.address?.street,
         post_code: data?.address?.post_code,
-        unit: data?.address?.unit,
+        // unit: data?.address?.unit,
       });
       await fetchDetails();
       setLoading(false);
@@ -118,38 +119,10 @@ const Checkout = () => {
     window.scrollTo(0, 0);
     fetchAddress();
 
-    // fetchDetails();
-
     if (!isFetching) {
       setProducts(cartItems);
     }
   }, [isFetching]);
-
-  // useEffect(() => {
-  //   if (
-  //     address?.address_book?.filter((add) => add?.defaultAddress === true)
-  //       .length !== 0
-  //   ) {
-  //     address?.address_book
-  //       ?.filter((add) => add?.defaultAddress === true)
-  //       .map((add) =>
-  //         setValues({
-  //           province: add?.province,
-  //           town: add?.town,
-  //           street: add?.street,
-  //           post_code: add?.post_code,
-  //           defaultAddressId: add?._id,
-  //         })
-  //       );
-  //   } else {
-  //     setValues({
-  //       province: "",
-  //       town: "",
-  //       street: "",
-  //       post_code: "",
-  //     });
-  //   }
-  // }, [address]);
 
   const handleOrder = async () => {
     setLoading(true);
@@ -218,52 +191,9 @@ const Checkout = () => {
           >
             <p>Choose different address</p>
           </div>
-
+          {console.log({ userValues })}
           <Row>
             <Col xs={"auto"} sm={4} md={6} lg={5}>
-              <div className="checkout-sec-1">
-                {/* <p>
-                <span>Returning customer?</span> Click here to login.
-              </p> */}
-                {/* <p>
-                  <span>Have a coupon?</span> Click here to enter your code.
-                </p>
-                <div className="checkout-sec-1-1">
-                  <div className="coupon-sec">
-                    <div className="coupon-code-box">
-                      <p className="pt-3 pb-2">Coupon Code</p>
-                      <div className="p-divider"></div>
-                    </div>
-                    <Button className="btn-dark">Apply Coupon</Button>
-                  </div>
-                </div> */}
-              </div>
-              <div>
-                <p
-                  className="checkout-choose-addr"
-                  style={{
-                    cursor: "pointer",
-                    textDecoration: "underline",
-                    opacity: "0.8",
-                    marginBottom: "1rem",
-                    marginTop: "1rem",
-                  }}
-                  onClick={() => setAddCoupon(!addCoupon)}
-                >
-                  Have a coupon code?
-                </p>
-                {addCoupon && (
-                  <Form.Group>
-                    <Form.Control
-                      type={"text"}
-                      name="coupon_code"
-                      value={coupon_code}
-                      placeholder="Paste your coupon here"
-                      onChange={(e) => setCoupon_code(e.target.value)}
-                    />
-                  </Form.Group>
-                )}
-              </div>
               <div className="checkout-sec-2">
                 <h3 className="mb-3">Billing Details</h3>
                 <ReactPlaceholder
@@ -309,17 +239,6 @@ const Checkout = () => {
                         name="street"
                         disabled
                         value={values?.street}
-                      />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Form.Control
-                        type="text"
-                        placeholder="Unit *"
-                        required
-                        name="unit"
-                        disabled
-                        value={values?.unit}
                       />
                     </Form.Group>
 
@@ -379,45 +298,12 @@ const Checkout = () => {
                       />
                     </Form.Group>
 
-                    <Form.Group className="mb-3">
-                      <Form.Check
-                        type="checkbox"
-                        label="I am 19+ years old (required)"
-                        defaultChecked={ageCheck}
-                        onChange={ageCheckChange}
-                        required
-                      />
-                    </Form.Group>
-
-                    {/* <Form.Group className="mb-3">
-                      <Form.Check
-                        type="checkbox"
-                        label="Create an acoount?"
-                        // defaultChecked={createAccCheck}
-                        // onChange={createAccCheckChange}
-                      />
-                    </Form.Group> */}
-
-                    {/* <Form.Group className="mb-3">
-                      <Form.Check
-                        type="checkbox"
-                        label="Ship to a different address?"
-                      />
-                    </Form.Group> */}
-
-                    {/* <Form.Group className="mb-3">
-                      <Form.Control
-                        type="text"
-                        placeholder="Other Notes"
-                        required
-                      />
-                    </Form.Group> */}
                   </Form>
                 </ReactPlaceholder>
               </div>
             </Col>
             <Col>
-              <div className="order-sec">
+              <div className="order-sec" style={{ marginTop: "2rem" }}>
                 <div style={{ width: "100%" }}>
                   <h5>Your Order</h5>
 
@@ -520,61 +406,6 @@ const Checkout = () => {
                       </div>
                       <hr className="order-hr" />
 
-                      <div className="shipping">
-                        <p className="shipping-txt">Shipping</p>
-                        <hr className="order-hr" />
-                        {/* <Form>
-                          <Form.Check
-                            className="radio-btn"
-                            label="Free shipping"
-                            type="radio"
-                          />
-                          <Form.Check
-                            className="radio-btn"
-                            label="Flat rate: $15.00"
-                            type="radio"
-                          />
-                        </Form> */}
-                        <p className="order-div">
-                          {free_ship ? (
-                            <div
-                              style={{ width: "100%" }}
-                              className="d-flex flex-column"
-                            >
-                              <div className="d-flex justify-content-between">
-                                <p
-                                  style={{
-                                    textDecoration: free_ship && "line-through",
-                                  }}
-                                >
-                                  Fee
-                                </p>
-                                <p
-                                  style={{
-                                    textDecoration: free_ship && "line-through",
-                                  }}
-                                >
-                                  $ {charges}
-                                </p>
-                              </div>
-
-                              <div
-                                className="d-flex justify-content-between mt-2"
-                                style={{ fontSize: "0.9rem" }}
-                              >
-                                <strong>Free Shipping Applied</strong>
-                                <strong>$ 0</strong>
-                              </div>
-                            </div>
-                          ) : (
-                            <>
-                              <span>Fee</span>
-                              <p>$ {charges}</p>
-                            </>
-                          )}
-                        </p>
-                      </div>
-                      <hr className="order-hr" />
                       <div>
                         <p className="order-div">
                           Total <p>$ {total?.toFixed(2)}</p>
@@ -582,35 +413,17 @@ const Checkout = () => {
                       </div>
 
                       <hr className="heading-hr" />
-
-                      <div className="order-bottom">
-                        <p>
-                          <b>Interac e-Transfer</b>
-                        </p>
-                        <p className="order-bottom-txt">
-                          – Make your payment via Interac e-Transfer.
-                        </p>
-                        <p className="order-bottom-txt">
-                          – Please use your Order Number as the payment
-                          reference in the e-Transfer.
-                        </p>
-                        <p className="order-bottom-txt">
-                          – For e-Transfer instructions, we will email you an
-                          invoice or check the next screen after placing your
-                          order
-                        </p>
-                      </div>
                     </ReactPlaceholder>
                   </div>
                 </div>
                 <div className="order-btn">
-                  {ageCheck &&
-                  values?.province !== "" &&
-                  values?.post_code !== "" &&
-                  values?.street !== "" &&
-                  values?.town !== "" &&
-                  userValues?.mobile_no !== "" &&
-                  userValues?.mobile_no !== undefined ? (
+                  {/* {ageCheck && */}
+                  { values?.province !== "" &&
+                    values?.post_code !== "" &&
+                    values?.street !== "" &&
+                    values?.town !== "" &&
+                    userValues?.mobile_no !== "" &&
+                    userValues?.mobile_no !== undefined ? (
                     loading ? (
                       <Button variant="dark" size="lg" disabled>
                         <Spinner animation="border" variant="light" />
@@ -631,7 +444,7 @@ const Checkout = () => {
                     </Button>
                   )}
                 </div>
-                <div>
+                {/* <div>
                   <div
                     style={{
                       display: "flex",
@@ -663,7 +476,7 @@ const Checkout = () => {
                   >
                     {message}
                   </p>
-                </div>
+                </div> */}
               </div>
             </Col>
           </Row>
