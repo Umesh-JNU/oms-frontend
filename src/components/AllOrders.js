@@ -201,7 +201,7 @@ const AllOrders = () => {
                                     >
                                       <div
                                         className="ship-to"
-                                        // onClick={() => setShow(!show)}
+                                      // onClick={() => setShow(!show)}
                                       >
                                         <>
                                           <i>Ship to</i>
@@ -227,15 +227,12 @@ const AllOrders = () => {
                               </div>
                               <div>
                                 <p
-                                  className={`${
-                                    order?.status === "pending" &&
+                                  className={`${order?.status === "pending" &&
                                     "order-pending"
-                                  } ${
-                                    order?.status === "paid" && "order-paid"
-                                  } ${
-                                    order?.status === "delivered" &&
+                                    } ${order?.status === "paid" && "order-paid"
+                                    } ${order?.status === "delivered" &&
                                     "order-delivered"
-                                  }`}
+                                    }`}
                                 >
                                   {order?.status}
                                 </p>
@@ -245,7 +242,7 @@ const AllOrders = () => {
                               <Col
                                 style={{
                                   width: "50%",
-                                  paddingLeft: "2rem",
+                                  padding: "0 2rem",
                                 }}
                               >
                                 {order?.products?.map((product) => (
@@ -255,26 +252,16 @@ const AllOrders = () => {
                                       key={product?._id}
                                     >
                                       <div className="recent-order-img">
-                                        <img
-                                          src={
-                                            product?.parent_prod
-                                              ?.product_img
-                                              // ?.product_images[0]
-                                          }
-                                          alt=""
-                                        />
+                                        <img src={product?.parent_prod?.product_img} alt="" />
                                       </div>
                                       <div
                                         key={product?._id}
                                         className="all-orders-prod"
                                       >
                                         <p
+                                          // style={{fontSize: "1.3rem"}}
                                           className="all-orders-prod-name"
-                                          onClick={() =>
-                                            navigate(
-                                              `/home/${product?.parent_prod?._id}?subId=${product?.product?._id}`
-                                            )
-                                          }
+                                          onClick={() => navigate(`/home/product/${product?.parent_prod?._id}?subId=${product?.product?._id}`)}
                                         >
                                           {product?.parent_prod?.name}
                                         </p>
@@ -302,11 +289,11 @@ const AllOrders = () => {
                                         marginTop: "0.6rem",
                                         fontWeight: "500",
                                       }}
-                                      // className="all-orders-prod-desc"
+                                    // className="all-orders-prod-desc"
                                     >
                                       {product?.product?.qname}
                                     </p>
-                                    <div className="add-review">
+                                    {/* <div className="add-review">
                                       <Button
                                         variant="dark"
                                         onClick={() =>
@@ -317,11 +304,11 @@ const AllOrders = () => {
                                       >
                                         Write a product review
                                       </Button>
-                                    </div>
+                                    </div> */}
                                   </>
                                 ))}
                               </Col>
-                              <Col className="re-order-btn">
+                              {/* <Col className="re-order-btn">
                                 <div className="re-order-btn-all-order">
                                   <div>
                                     {buyAgainLoading ? (
@@ -356,7 +343,7 @@ const AllOrders = () => {
                                     )}
                                   </div>
                                 </div>
-                              </Col>
+                              </Col> */}
                               <div className="order-id">
                                 <p>
                                   Order Number: <span>{order?.orderId}</span>

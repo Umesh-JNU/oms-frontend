@@ -106,9 +106,6 @@ const Footer = () => {
                     <Link to="home/sign-in">
                       <p>Sign in</p>
                     </Link>
-                    <Link to="home/sign-up">
-                      <p>Register</p>
-                    </Link>
                     <Link to="home/my-orders">
                       <p>Order Status</p>
                     </Link>
@@ -126,9 +123,9 @@ const Footer = () => {
                     <Link to="/home/faq">
                       <p>FAQ</p>
                     </Link>
-                    <Link to="home/my-orders">
+                    {/* <Link to="home/my-orders">
                       <p>Shipping</p>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </Col>
