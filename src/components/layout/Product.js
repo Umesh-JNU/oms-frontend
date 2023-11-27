@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CardTop from "../card/CardTop";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 
 const Product = ({ item, subItem, loading }) => {
   const navigate = useNavigate();

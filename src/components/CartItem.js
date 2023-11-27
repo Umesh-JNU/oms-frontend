@@ -4,7 +4,7 @@ import CardImg from "./card/CardImg";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 import { deleteCart, updateCart } from "../features/apiCall";
 import { useGetCategoryQuery } from "../features/productsApi";

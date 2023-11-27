@@ -14,9 +14,11 @@ const addressesSlice = createSlice({
       state.loadingAddr = true;
     },
     addressesSuccess: (state, action) => {
+      console.log({ action: action.payload })
       state.addressesErr = "";
       state.loadingAddr = false;
-      state.addresses = action.payload;
+      state.addresses = action.payload.address_book;
+      state.defaultAddress = action.payload.defaultAddress;
     },
     addressesFailure: (state, action) => {
       state.loadingAddr = false;

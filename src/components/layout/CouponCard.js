@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "../../utils/axios";
 import ReactPlaceholder from "react-placeholder";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "react-placeholder/lib/reactPlaceholder.css";
+
+
 import { Button, Col, Row, Spinner } from "react-bootstrap";
 import app_logo_black from "./app_logo_black.png";
 import { AiOutlineInfoCircle, AiOutlineTags } from "react-icons/ai";

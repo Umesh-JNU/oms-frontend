@@ -3,6 +3,12 @@ import {
   loginFailure,
   loginStart,
   loginSuccess,
+  forgotPwdFailure,
+  forgotPwdStart,
+  forgotPwdSuccess,
+  resetPwdFailure,
+  resetPwdStart,
+  resetPwdSuccess,
   registerFailure,
   registerStart,
   registerSuccess,
@@ -33,7 +39,34 @@ export const login = async (dispatch, user) => {
 
     dispatch(loginSuccess(data));
   } catch (error) {
+    console.log({ error })
     dispatch(loginFailure(error?.response?.data?.error));
+  }
+};
+
+export const forgotPassword = async (dispatch, email) => {
+  dispatch(forgotPwdStart());
+
+  try {
+    const { data } = await axios.post("/api/user/forgot-password", { email });
+
+    dispatch(forgotPwdSuccess(data));
+  } catch (error) {
+    console.log({ error })
+    dispatch(forgotPwdFailure(error?.response?.data?.error));
+  }
+};
+
+export const resetPassword = async (dispatch, resetToken, values) => {
+  dispatch(resetPwdStart());
+
+  try {
+    const { data } = await axios.put(`/api/user/reset-password/${resetToken}`, values);
+
+    dispatch(resetPwdSuccess(data));
+  } catch (error) {
+    console.log({ error })
+    dispatch(resetPwdFailure(error?.response?.data?.error));
   }
 };
 

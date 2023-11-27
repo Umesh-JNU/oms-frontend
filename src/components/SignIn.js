@@ -4,7 +4,7 @@ import { Container, Row, Form, Col, Button, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 import { login } from "../features/apiCall";
 import { motion } from "framer-motion";
@@ -70,55 +70,52 @@ const SignIn = () => {
   return (
     <>
       {/* {(ageCheck || token) && ( */}
-        <motion.div
-          initial={{ x: "-100%" }}
-          animate={{ x: "0%" }}
-          exit={{ x: "100%" }}
-          transition={{ duration: 0.75, ease: "easeInOut" }}
-        >
-          <Container className="pt-5 px-3 px-md-0 f-center flex-column">
-            <div className="f-center mb-4">
-              <Link to="/home/sign-in" className="toggle-link-item active-link">
-                Login
-              </Link>
-              {/* <Link to="/home/sign-up" className="toggle-link-item">
+      <motion.div
+        initial={{ x: "-100%" }}
+        animate={{ x: "0%" }}
+        exit={{ x: "100%" }}
+        transition={{ duration: 0.75, ease: "easeInOut" }}
+      >
+        <Container className="pt-5 px-3 px-md-0 f-center flex-column">
+          <div className="f-center mb-4">
+            <Link to="/home/sign-in" className="toggle-link-item active-link">
+              Login
+            </Link>
+            {/* <Link to="/home/sign-up" className="toggle-link-item">
                 Register
               </Link> */}
-            </div>
-            <div className="form-box">
-              <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3"></Form.Group>
-                {isFetching ? (
-                  <Button variant="dark" size="lg" disabled>
-                    <Spinner animation="border" variant="light" />
-                  </Button>
-                ) : (
-                  <Button type="submit" variant="dark">
-                    Submit
-                  </Button>
-                )}
-              </Form>
-            </div>
-          </Container>
-        </motion.div>
+          </div>
+          <div className="form-box">
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+
+              <div className="d-flex justify-content-between align-items-center">
+                <Button type="submit" variant="dark" disabled={isFetching}>
+                  {isFetching ? <Spinner animation="border" size="sm" variant="light" /> : "Submit"}
+                </Button>
+                <Link to="/forgot-password" className="fs-sm text-primary">Forgot Password</Link>
+              </div>
+            </Form>
+          </div>
+        </Container>
+      </motion.div>
       {/* )} */}
 
       {/* {modal && (

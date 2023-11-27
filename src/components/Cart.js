@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Alert, Form } from "react-bootstrap";
 import ReactBreadcrumb from "./layout/BreadCrumb";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import CartItem from "./CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../features/apiCall";

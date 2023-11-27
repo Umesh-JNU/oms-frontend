@@ -35,6 +35,46 @@ const authSlice = createSlice({
       state.error = true;
     },
 
+    forgotPwdStart: (state, action) => {
+      state.isFetching = true;
+      state.error = false;
+      state.message = "";
+    },
+    forgotPwdSuccess: (state, action) => {
+      state.error = false;
+      state.errMsg = "";
+
+      state.isFetching = false;
+      state.error = false;
+      state.message = action.payload.message;
+    },
+    forgotPwdFailure: (state, action) => {
+      state.errMsg = action.payload;
+      state.isFetching = false;
+      state.error = true;
+      state.message = "";
+    },
+    
+    resetPwdStart: (state, action) => {
+      state.isFetching = true;
+      state.error = false;
+      state.message = "";
+    },
+    resetPwdSuccess: (state, action) => {
+      state.error = false;
+      state.errMsg = "";
+
+      state.isFetching = false;
+      state.error = false;
+      state.message = action.payload.message;
+    },
+    resetPwdFailure: (state, action) => {
+      state.errMsg = action.payload;
+      state.isFetching = false;
+      state.error = true;
+      state.message = "";
+    },
+
     registerStart: (state, action) => {
       state.isFetching = true;
       state.error = false;
@@ -70,6 +110,12 @@ export const {
   loginStart,
   loginSuccess,
   loginFailure,
+  forgotPwdStart,
+  forgotPwdSuccess,
+  forgotPwdFailure,
+  resetPwdStart,
+  resetPwdSuccess,
+  resetPwdFailure,
   registerSuccess,
   registerStart,
   registerFailure,

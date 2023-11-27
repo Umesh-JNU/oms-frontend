@@ -3,9 +3,9 @@ import { Button, Row, Tab, Tabs } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { Rating } from "react-simple-star-rating";
 
 const ProductDetailsTabs = ({ loadingProduct, product }) => {
@@ -57,7 +57,7 @@ const ProductDetailsTabs = ({ loadingProduct, product }) => {
             rows={7}
             ready={!loadingProduct}
           >
-            <p className="tab-desc">{product?.description}</p>
+            <p className="tab-desc fw-normal">{product?.description}</p>
           </ReactPlaceholder>
         </Tab>
         {/* <Tab

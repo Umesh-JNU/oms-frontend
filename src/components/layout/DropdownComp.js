@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavDropdown, Row, Col } from "react-bootstrap";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import {
   useGetAllCategoriesQuery,
   useGetAllSubCategoriesQuery,

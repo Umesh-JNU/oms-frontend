@@ -39,7 +39,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 const CheckoutAddr = () => {
   const { token } = useSelector((state) => state.auth);
 
-  const { addresses, addressesErr, loadingAddr } = useSelector(
+  const { addresses, defaultAddress, addressesErr, loadingAddr } = useSelector(
     (state) => state.addresses
   );
   const { addressCheck, fetchingUpdate } = useSelector(
@@ -87,7 +87,7 @@ const CheckoutAddr = () => {
         },
       });
 
-      dispatch(addressesSuccess(data?.address_book));
+      dispatch(addressesSuccess(data));
     } catch (error) {
       dispatch(addressesFailure(error?.response?.data?.error?.message));
 
@@ -107,8 +107,19 @@ const CheckoutAddr = () => {
     window.scrollTo(0, 0);
     fetchAddress();
 
+    dispatch(setaddress());
+
     getCart(dispatch);
   }, []);
+
+  useEffect(() => {
+    if (defaultAddress) {
+      setTownCity(defaultAddress?.town);
+      dispatch(addressSuccess(defaultAddress?._id));
+    }
+  }, [defaultAddress]);
+
+  console.log({ defaultAddress, addressCheck });
 
   const handleAddAddress = async (e) => {
     e.preventDefault();
@@ -144,8 +155,8 @@ const CheckoutAddr = () => {
     setShowAdd(false);
   };
 
-  const handleAddress = async (id) => {
-    await dispatch(addressSuccess(id));
+  const handleAddress = (id) => {
+    dispatch(addressSuccess(id));
   };
 
   const handleUpdate = async () => {
@@ -178,10 +189,6 @@ const CheckoutAddr = () => {
       toast.error(error?.response?.data?.error?.message, toastOptions);
     }
   };
-
-  useEffect(() => {
-    dispatch(setaddress());
-  }, []);
 
   return (
     <>
@@ -255,7 +262,7 @@ const CheckoutAddr = () => {
                                 label={
                                   <>
                                     <p>
-                                      {address?.unit} {address?.street},{" "}
+                                      {address?.street},{" "}
                                       {address?.town}, {address?.province},{" "}
                                       {address?.post_code}
                                     </p>
@@ -281,7 +288,7 @@ const CheckoutAddr = () => {
                       className="update-btn"
                       variant="dark"
                       // onClick={() => navigate("/home/checkout", { replace: true })}
-                    onClick={() => handleUpdate()}
+                      onClick={() => handleUpdate()}
                     >
                       Next
                     </Button>

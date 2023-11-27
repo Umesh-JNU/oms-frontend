@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import axios from "../utils/axios";

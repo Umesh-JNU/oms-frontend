@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  addressCheck: {},
+  addressCheck: '',
   charges: null,
   free_ship: null,
   total: null,
@@ -45,7 +45,7 @@ const addressSlice = createSlice({
       state.updateErr = action.payload;
     },
     setaddress: (state, action) => {
-      state.addressCheck = {};
+      state.addressCheck = "";
       state.charges = null;
       state.total = null;
       state.free_ship = null;

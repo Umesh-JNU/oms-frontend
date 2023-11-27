@@ -4,9 +4,9 @@ import React, { useEffect, useReducer, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import ReactBreadcrumb from "./layout/BreadCrumb";
 import { motion } from "framer-motion";
 import { AiOutlinePlus } from "react-icons/ai";

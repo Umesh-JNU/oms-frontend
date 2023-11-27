@@ -5,7 +5,7 @@ import useGeoLocation from "react-ipgeolocation";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 
-import { Header, Footer, NotAllowed, NotFound, Home, SignIn, Profile, Addresses, AllOrders, Order, ProductList, ProductDetails, Cart, Checkout, CheckoutAddr, FaqPage } from "./components";
+import { Header, Footer, NotAllowed, NotFound, Home, SignIn, ForgotPassword, ResetPassword, Profile, Addresses, AllOrders, Order, ProductList, ProductDetails, Cart, Checkout, CheckoutAddr, FaqPage } from "./components";
 
 // import Cart from "./components/Cart";
 // import Checkout from "./components/Checkout";
@@ -22,6 +22,8 @@ import { Header, Footer, NotAllowed, NotFound, Home, SignIn, Profile, Addresses,
 const comp = [
   { path: "/", comp: <Home /> },
   { path: "/home/sign-in", comp: <SignIn /> },
+  { path: "/forgot-password", comp: <ForgotPassword /> },
+  { path: "/reset-password/:resetToken", comp: <ResetPassword /> },
   { path: "/home/faq", comp: <FaqPage /> },
   { path: "/home/products", comp: <ProductList /> },
   { path: "/home/product/:id", comp: <ProductDetails /> },

@@ -3,14 +3,14 @@ import { Container, Row, Col, Button, Form, Spinner } from "react-bootstrap";
 import axios from "../utils/axios";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import { useNavigate } from "react-router-dom";
 import { getCart } from "../features/apiCall";
 import ReactBreadcrumb from "./layout/BreadCrumb";
 import { motion } from "framer-motion";
 import { TbRosetteNumber2 } from "react-icons/tb";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { setaddress } from "../features/setChecAddr";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 

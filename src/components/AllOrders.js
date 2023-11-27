@@ -1,7 +1,7 @@
 import axios from "../utils/axios";
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import {
   Alert,
   Button,
@@ -18,7 +18,7 @@ import moment from "moment";
 import { buyAgain, getCart } from "../features/apiCall";
 import { useNavigate } from "react-router-dom";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import ReactBreadcrumb from "./layout/BreadCrumb";
 import { motion } from "framer-motion";
 import {

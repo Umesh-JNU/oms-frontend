@@ -3,9 +3,9 @@ import { Button, Container, Form } from "react-bootstrap";
 import { useGetProductQuery } from "../features/productsApi";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { Rating } from "react-simple-star-rating";
 import axios from "../utils/axios";
 import { useSelector } from "react-redux";

@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { Container, Row, Col, Form, InputGroup, Alert } from "react-bootstrap";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import ReactBreadcrumb from "./layout/BreadCrumb";
 import { useGetAllCategoriesQuery, useGetShopDetailsQuery } from "../features/productsApi";
@@ -19,30 +19,6 @@ import {
 import { ageCheckSuccess } from "../features/ageCheckSlice";
 import AlertBox from "./layout/AlertBox";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-
-    case "FETCH_SUCCESS":
-      return {
-        ...state,
-        products: action.payload,
-        productsCount: action.payload?.length,
-        loading: false,
-      };
-    case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-    case "AGECHECK_SUCCESS":
-      return {
-        ...state,
-        ageCheck: action.payload,
-      };
-
-    default:
-      return state;
-  }
-};
 
 const Shop = () => {
   const [searchParams, _] = useSearchParams(document.location.search);
@@ -63,28 +39,28 @@ const Shop = () => {
   const [searchProduct, setSearchProduct] = useState("");
 
   const getSearchedProducts = async () => {
-    if (searchProduct.length > 0) {
-      dispatch(getProductListStart());
+    // if (searchProduct.length > 0) {
+    dispatch(getProductListStart());
 
-      try {
-        console.log({ searchProduct })
-        const { data } = await axios.get(
-          `/api/product/all/?keyword=${searchProduct}`
-        );
+    try {
+      console.log({ searchProduct })
+      const { data } = await axios.get(
+        `/api/product/all/?keyword=${searchProduct}`
+      );
 
-        // console.log(data?.products);
+      // console.log(data?.products);
 
-        dispatch(getProductListSuccess(data?.products));
-        // dispatch({ type: "FETCH_SUCCESS", payload: data?.products });
-      } catch (error) {
-        // console.log(error?.response?.data?.error?.message);
-        dispatch(getProductListFailure(error?.response?.data?.error?.message));
-        // dispatch({
-        //   type: "FETCH_FAIL",
-        //   payload: error?.response?.data?.error?.message,
-        // });
-      }
+      dispatch(getProductListSuccess(data?.products));
+      // dispatch({ type: "FETCH_SUCCESS", payload: data?.products });
+    } catch (error) {
+      // console.log(error?.response?.data?.error?.message);
+      dispatch(getProductListFailure(error?.response?.data?.error?.message));
+      // dispatch({
+      //   type: "FETCH_FAIL",
+      //   payload: error?.response?.data?.error?.message,
+      // });
     }
+    // }
   };
 
   const handleProductSearch = () => {
@@ -97,7 +73,7 @@ const Shop = () => {
     dispatch(getProductListStart());
     try {
       console.log({ queryCategory, type: typeof queryCategory })
-      const url = `/api/category/${queryCategory ? queryCategory : 'null' }/products`;
+      const url = `/api/category/${queryCategory ? queryCategory : 'null'}/products`;
       console.log({ url })
       const { data } = await axios.get(url);
 

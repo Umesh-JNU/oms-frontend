@@ -11,7 +11,7 @@ import {
 import ReactBreadcrumb from "./layout/BreadCrumb";
 import axios from "../utils/axios";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
@@ -151,11 +151,15 @@ const AccountForm = () => {
               <Form.Group className="mb-3" controlId="phone">
                 <Form.Label>Mobile No.</Form.Label>
                 <Form.Control
-                  type="number"
+                  type="text"
+                  maxLength={10}
+                  pattern="[0-9]{10}"
                   required
                   name="mobile_no"
                   value={values?.mobile_no}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    setValues({ ...values, mobile_no: e.target.value.replace(/\D/g, '') })
+                  }}
                 />
               </Form.Group>
             </Col>
@@ -225,7 +229,7 @@ const PasswordForm = () => {
     try {
       if (handleValidation()) {
         const { data } = await axios.put(
-          "/api/user/reset-password",
+          "/api/user/update-password",
           { password, confirmPassword },
           { headers: { Authorization: `${token}` } }
         );
@@ -238,7 +242,9 @@ const PasswordForm = () => {
         });
       }
     } catch (error) {
-      toast.error("There was an error. Please again later!", toastOptions);
+      toast.error(error.response.data.error.message, toastOptions);
+
+      // toast.error("There was an error. Please again later!", toastOptions);
     }
 
     setLoading(false);

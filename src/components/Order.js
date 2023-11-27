@@ -5,7 +5,7 @@ import ReactBreadcrumb from "./layout/BreadCrumb";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import moment from "moment";
 import { setCart } from "../features/cartSlice";
 import { motion } from "framer-motion";

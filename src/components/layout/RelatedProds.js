@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import { Slide } from "react-slideshow-image";
 import {
   relatedProdsFailure,

@@ -9,10 +9,10 @@ import {
   Form,
 } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import ReactBreadcrumb from "./layout/BreadCrumb";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";
+
 import CardTop from "./card/CardTop";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -419,8 +419,8 @@ const ProductDetails = () => {
                               Add to cart
                             </Button>
                           ) : isFetching ? (
-                            <Button variant="dark" size="lg" disabled>
-                              <Spinner animation="border" variant="light" />
+                            <Button variant="dark" disabled>
+                              <Spinner animation="border" size="sm" variant="light" />
                             </Button>
                           ) : (
                             <Button
