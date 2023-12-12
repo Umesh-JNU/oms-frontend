@@ -7,14 +7,15 @@ import {
   useGetAllSubCategoriesQuery,
 } from "../../features/productsApi";
 import { useNavigate } from "react-router-dom";
+import useGeoLocation from "react-ipgeolocation";
 
 const DropdownComp = ({ width }) => {
+  const location = useGeoLocation();
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
 
-  const { data: categoryData, isLoading: categoryLoading } =
-    useGetAllCategoriesQuery();
+  const { data: categoryData, isLoading: categoryLoading } = useGetAllCategoriesQuery(location);
 
   const { data: subCategoryData, isLoading: subCategoryLoading } =
     useGetAllSubCategoriesQuery();

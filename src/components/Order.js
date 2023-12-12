@@ -341,9 +341,9 @@ const Order = () => {
                             <li>
                               Email: <b>{email}</b>
                             </li>
-                            <li>
+                            {/* <li>
                               Total: <b>${orderDetails?.amount?.toFixed(2)}</b>
-                            </li>
+                            </li> */}
                             {/* <li>
                               Payment method: <b>Interac e-Transfer</b>
                             </li> */}
@@ -353,11 +353,8 @@ const Order = () => {
                     </div>
                   </div>
                 </Col>
+                <Col>
 
-                <div
-                  style={{ margin: "auto", width: "50%", marginTop: "2rem" }}
-                  className="order-alert-box-content"
-                >
                   <Alert variant="success">
                     <Alert.Heading as="h3">
                       <div style={{ display: "flex", alignItems: "center" }}>
@@ -393,7 +390,7 @@ const Order = () => {
                       <span>View order</span>
                     </Alert.Link>
                   </Alert>
-                </div>
+                </Col>
               </>
             )}
 

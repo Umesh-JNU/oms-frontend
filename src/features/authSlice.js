@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const token = localStorage.getItem("userToken");
-const user = localStorage.getItem("userId");
+const user = JSON.parse(localStorage.getItem("user"));
 
 const authSlice = createSlice({
   name: "auth",
@@ -21,13 +21,13 @@ const authSlice = createSlice({
       state.error = false;
       state.errMsg = "";
 
+      console.log({ user, token });
       state.isFetching = false;
-      state.error = false;
-      state.user = action.payload.user._id;
+      state.user = { _id: action.payload.user._id, username: action.payload.user.firstname + ' ' + action.payload.user.lastname };
       state.token = action.payload.token;
 
       localStorage.setItem("userToken", state.token);
-      localStorage.setItem("userId", state.user);
+      localStorage.setItem("user", JSON.stringify({ _id: action.payload.user._id, username: action.payload.user.firstname + ' ' + action.payload.user.lastname }));
     },
     loginFailure: (state, action) => {
       state.errMsg = action.payload;
@@ -54,7 +54,7 @@ const authSlice = createSlice({
       state.error = true;
       state.message = "";
     },
-    
+
     resetPwdStart: (state, action) => {
       state.isFetching = true;
       state.error = false;
@@ -81,14 +81,15 @@ const authSlice = createSlice({
     },
     registerSuccess: (state, action) => {
       state.error = false;
-      state.isFetching = false;
-      state.error = false;
-      state.user = action.payload.user._id;
-      state.token = action.payload.token;
       state.errMsg = "";
 
+      state.isFetching = false;
+      state.user = { _id: action.payload.user._id, username: action.payload.user.firstname + ' ' + action.payload.user.lastname };
+      state.token = action.payload.token;
+
       localStorage.setItem("userToken", state.token);
-      localStorage.setItem("userId", state.user);
+      localStorage.setItem("user", JSON.stringify({ _id: action.payload.user._id, username: action.payload.user.firstname + ' ' + action.payload.user.lastname }));
+
     },
     registerFailure: (state, action) => {
       state.isFetching = false;
@@ -99,7 +100,7 @@ const authSlice = createSlice({
     logOut: (state, action) => {
       state.user = null;
       state.token = null;
-      localStorage.removeItem("userId");
+      localStorage.removeItem("user");
       localStorage.removeItem("userToken");
     },
   },

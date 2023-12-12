@@ -5,19 +5,7 @@ import useGeoLocation from "react-ipgeolocation";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 
-import { Header, Footer, NotAllowed, NotFound, Home, SignIn, ForgotPassword, ResetPassword, Profile, Addresses, AllOrders, Order, ProductList, ProductDetails, Cart, Checkout, CheckoutAddr, FaqPage } from "./components";
-
-// import Cart from "./components/Cart";
-// import Checkout from "./components/Checkout";
-// import Profile from "./components/Profile.js";
-// import Addresses from "./components/Addresses";
-// import Order from "./components/Order";
-// import { useEffect, useLayoutEffect } from "react";
-// import { getCart } from "./features/apiCall";
-// import AllOrders from "./components/AllOrders";
-// import AddReview from "./components/AddReview";
-// import CheckoutAddr from "./components/CheckoutAddr";
-// import MyCoupons from "./components/MyCoupons";
+import { Header, Footer, NotAllowed, NotFound, Home, SignIn, ForgotPassword, ResetPassword, Profile, Addresses, AllOrders, Order, ProductList, ProductDetails, Cart, Checkout, CheckoutAddr, FaqPage, Chat } from "./components";
 
 const comp = [
   { path: "/", comp: <Home /> },
@@ -39,6 +27,7 @@ const protectComp = [
   { path: "/home/cart", comp: <Cart /> },
   { path: "/home/checkout-address", comp: <CheckoutAddr /> },
   { path: "/home/checkout", comp: <Checkout /> },
+  { path: "/home/chats", comp: <Chat /> },
   // { path: "/home/my-coupons", comp: <MyCoupons /> },
   // { path: "/review/review-your-purchase/:id", comp: <AddReview /> }
 ];
@@ -47,9 +36,9 @@ function App() {
   const dispatch = useDispatch();
   const pageLocation = useLocation();
   // const cls = window.location.pathname === '/' ? "h-dark" : "h-light";
-  // const cls = "h-light";
   const location = useGeoLocation();
-  console.log({ location });
+  // const cls = "h-light";
+  // console.log({ location });
   // const { ageCheck } = useSelector((state) => state.ageCheck);
   // const { token } = useSelector((state) => state.auth);
 

@@ -16,7 +16,6 @@ import "react-placeholder/lib/reactPlaceholder.css";
 import { Link, useNavigate } from "react-router-dom";
 import { getCart } from "../features/apiCall";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import ReactBreadcrumb from "./layout/BreadCrumb";
 import { motion } from "framer-motion";
 import {

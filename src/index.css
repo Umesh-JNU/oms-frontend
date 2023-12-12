@@ -1,6 +1,8 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "react-placeholder/lib/reactPlaceholder.css";
 @import "react-alice-carousel/lib/alice-carousel.css";
+@import "react-toastify/dist/ReactToastify.css";
+@import "react-chat-elements/dist/main.css";
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 :root {
@@ -965,7 +967,7 @@ p.tab-desc {
 
 /* Product Details Start */
 .product-detail {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .product-detail h6 {
@@ -1300,6 +1302,15 @@ p.tab-desc {
 .related-product,
 .products-container {
   cursor: pointer;
+  /* border: 1px solid #a09e9e; */
+  border: 1px solid #ececec;
+}
+
+.add-cart-box {
+  padding: 0.5rem;
+  border: 1px solid #ececec;
+  border-top: none;
+  margin-bottom: 1rem;
 }
 
 .related-product:hover,
@@ -1569,12 +1580,13 @@ p.tab-desc {
   cursor: pointer;
   border: var(--border-thin-light);
   max-width: 6rem;
-  width: min-content;
+  /* width: min-content; */
   border-radius: 3px;
   font-weight: 600;
 }
 
 .prod-btn-box-1>div {
+  flex: 1;
   text-align: center;
   font-size: 1.2rem;
   padding: 0 0.5rem;
@@ -1589,6 +1601,22 @@ p.tab-desc {
   height: 100%;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
+}
+
+.product-desc {
+  color: #8c8b8b;
+  margin-bottom: 0;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cart-btn {
+  margin-top: 0.5rem;
+  /* margin-bottom: 1rem; */
+  border-radius: 50px !important;
+  width: 100%;
 }
 
 .btn-dark {
@@ -2227,6 +2255,84 @@ hr {
 
 .h-light .navbar-toggler-icon {
   background-image: url("../public/images/toggle/toggle-dark.svg");
+}
+
+.chat-container {
+  height: 88vh;
+  background-color: #d3d0d0;
+  padding: 0;
+}
+
+.rce-citem,
+.rce-citem:hover {
+  border-bottom: 1px solid #000;
+  background-color: #f3e5f5;
+}
+
+.msg-box {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+}
+
+.rce-mlist {
+  position: absolute;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0 5px 5px -3px #a89a9a;
+}
+
+.rce-mbox-photo--download {
+  align-items: center;
+}
+
+/* set the width of the scrollbar */
+.msg-box::-webkit-scrollbar,
+.chat-list-box::-webkit-scrollbar,
+.rce-input-textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* set the background color of the track */
+.msg-box::-webkit-scrollbar-track,
+.chat-list-box::-webkit-scrollbar-track,
+.rce-input-textarea::-webkit-scrollbar-track {
+  background-color: #bbb;
+}
+
+.msg-box::-webkit-scrollbar-thumb,
+.chat-list-box::-webkit-scrollbar-thumb,
+.rce-input-textarea::-webkit-scrollbar-thumb {
+  /* set the color of the thumb */
+  background-color: #7a797a;
+  /* round the corners of the thumb */
+  border-radius: 4px;
+}
+
+.msg-box::-webkit-scrollbar-thumb:hover,
+.chat-list-box::-webkit-scrollbar-thumb:hover,
+.rce-input-textarea::-webkit-scrollbar-thumb:hover {
+  /* set the color of the thumb on hover */
+  background-color: #323432b4;
+}
+
+.h-90 {
+  height: 90%;
+}
+
+.rce-input-textarea {
+  height: 41px !important;
+  margin: 0 5px;
+  background-color: #f3f3f3;
+}
+
+.rce-citem-body--top-time {
+  display: none;
+}
+
+.rce-input-buttons {
+  margin: 0;
+  margin-left: 5px;
 }
 
 @media (max-width: 576px) {

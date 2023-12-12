@@ -110,7 +110,7 @@ const AllOrders = () => {
         transition={{ duration: 0.75, ease: "easeInOut" }}
       >
         <Container>
-          <div className="filter-order">
+          {/* <div className="filter-order">
             <p>Filter Order by </p>
             <Form.Select
               size="sm"
@@ -118,11 +118,12 @@ const AllOrders = () => {
               className="form-select-filter"
             >
               <option value="all">All</option>
-              <option value="pending">Pending</option>
+              <option value="in-progress">In-Progress</option>
               <option value="delivered">Delivered</option>
               <option value="paid">Paid</option>
+              <option value="cancelled">Cancelled</option>
             </Form.Select>
-          </div>
+          </div> */}
           <div className="all-orders">
             <h1>Your Orders!</h1>
             <div
@@ -356,11 +357,11 @@ const AllOrders = () => {
                             </Row>
                           </div>
                         </div>
-                        <hr />
+                        {/* <hr />
                         <div className="total-amount">
                           <p>Total</p>
                           <p>${order?.amount?.toFixed(2)}</p>
-                        </div>
+                        </div> */}
                       </Col>
                     </>
                   ))}

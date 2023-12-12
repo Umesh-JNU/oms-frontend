@@ -2,9 +2,9 @@ import React, { useEffect, useReducer, useState } from "react";
 import { Container, Row, Col, Form, InputGroup, Alert } from "react-bootstrap";
 import ReactPlaceholder from "react-placeholder";
 
-import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import ReactBreadcrumb from "./layout/BreadCrumb";
-import { useGetAllCategoriesQuery, useGetShopDetailsQuery } from "../features/productsApi";
+import { useGetShopDetailsQuery, useGetAllCategoriesQuery } from "../features/productsApi";
 import axios from "../utils/axios";
 import { motion } from "framer-motion";
 import Product from "./layout/Product";
@@ -18,12 +18,15 @@ import {
 } from "../features/productListSlice";
 import { ageCheckSuccess } from "../features/ageCheckSlice";
 import AlertBox from "./layout/AlertBox";
+import useGeoLocation from "react-ipgeolocation";
 
 
 const Shop = () => {
   const [searchParams, _] = useSearchParams(document.location.search);
   const queryCategory = decodeURIComponent(searchParams.get('category'));
   console.log({ queryCategory })
+
+  const location = useGeoLocation();
   // const [{ loading, products, productsCount, error, ageCheck }, dispatch] =
   //   useReducer(reducer, { loading: true, error: "" });
   const { ageCheck } = useSelector((state) => state.ageCheck);
@@ -73,7 +76,7 @@ const Shop = () => {
     dispatch(getProductListStart());
     try {
       console.log({ queryCategory, type: typeof queryCategory })
-      const url = `/api/category/${queryCategory ? queryCategory : 'null'}/products`;
+      const url = `/api/category/${queryCategory ? queryCategory : 'null'}/products/?location=${location.country === 'IN' ? 'CA' : 'US'}`;
       console.log({ url })
       const { data } = await axios.get(url);
 
@@ -89,7 +92,7 @@ const Shop = () => {
     }
   };
 
-  const { data: categoryData, isLoading: shopDetailsLoading } = useGetAllCategoriesQuery();
+  const { data: categoryData, isLoading: shopDetailsLoading } = useGetAllCategoriesQuery(location);
   console.log({ categoryData })
 
   useEffect(() => {

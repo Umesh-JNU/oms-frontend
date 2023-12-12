@@ -13,7 +13,7 @@ import axios from "../utils/axios";
 import ReactPlaceholder from "react-placeholder";
 
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import { Link, useNavigate } from "react-router-dom";

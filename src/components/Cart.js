@@ -156,7 +156,7 @@ const Cart = () => {
           </div>
 
           <Row className="product-content justify-content-center">
-            <Col md={"auto"} lg={7} className="px-md-5">
+            <Col md={9} lg={7} className="px-md-5">
               {!isFetching && cart?.length === 0 ? (
                 <div className="cart-alert-box">
                   <AlertBox
@@ -176,15 +176,29 @@ const Cart = () => {
                   />
                 </div>
               ) : (
-                <Row className="m-0">
-                  {cart?.map((i) => (
-                    <CartItem key={Math.random()} cartItem={i} />
-                  ))}
-                </Row>
+                cart?.map((i) => (
+                  <CartItem key={Math.random()} cartItem={i} />
+                ))
+              )}
+
+              {cartItems.length > 0 ? (
+                <Button
+                  className="proceed-btn btn-dark"
+                  onClick={() => navigate("/home/checkout-address")}
+                >
+                  Proceed to Checkout
+                </Button>
+              ) : (
+                <Button
+                  className="proceed-btn diasbled-proceed btn-dark"
+                  disabled
+                >
+                  Proceed to Checkout
+                </Button>
               )}
             </Col>
 
-            <Col md={8} lg={5}>
+            {/* <Col md={8} lg={5}>
               <h3 className="mb-3 mt-4">Cart Totals</h3>
               <div className="cart-detail-table">
                 <>
@@ -231,22 +245,8 @@ const Cart = () => {
                   <span>$ {cartTotalAmount?.toFixed(2)}</span>
                 </ReactPlaceholder>
               </h5>
-              {cartItems.length > 0 ? (
-                <Button
-                  className="proceed-btn btn-dark"
-                  onClick={() => navigate("/home/checkout-address")}
-                >
-                  Proceed to Checkout
-                </Button>
-              ) : (
-                <Button
-                  className="proceed-btn diasbled-proceed btn-dark"
-                  disabled
-                >
-                  Proceed to Checkout
-                </Button>
-              )}
-            </Col>
+              
+            </Col> */}
           </Row>
 
         </Container>

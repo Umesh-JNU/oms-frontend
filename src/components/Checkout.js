@@ -310,7 +310,7 @@ const Checkout = () => {
                   {/* output the cart details here */}
                   <div className="order-heading">
                     <div>PRODUCT</div>
-                    <div>SUBTOTAL</div>
+                    {/* <div>SUBTOTAL</div> */}
                   </div>
                   <hr className="heading-hr" />
                   <div className="order-product-container">
@@ -321,7 +321,9 @@ const Checkout = () => {
                       rows={10}
                       ready={!isFetching}
                     >
-                      {products?.map((product) => (
+                      {products?.map((product) => {
+                        console.log({product});
+                      return (
                         <>
                           <div
                             key={product?.product?._id}
@@ -342,10 +344,10 @@ const Checkout = () => {
                                   {product?.quantity}
                                 </span>
                                 <span className="prod-qname">
-                                  {product?.product?.qname}
+                                  {/* {product?.product?.quantity} */}
                                 </span>
                               </div>
-                              <div>
+                              {/* <div>
                                 {inSalePrice?.filter(
                                   (inSale) =>
                                     inSale?.id === product?.product?._id
@@ -391,14 +393,14 @@ const Checkout = () => {
                                     </p>
                                   </div>
                                 )}
-                              </div>
+                              </div> */}
                             </p>
                           </div>
                           <hr className="order-hr" />
                         </>
-                      ))}
+                      )})}
                       {/* <hr className="order-hr" /> */}
-                      <div className="order-subtotal">
+                      {/* <div className="order-subtotal">
                         <p className="order-div">
                           Subtotal
                           <p>$ {cartTotalAmount?.toFixed(2)}</p>
@@ -412,7 +414,7 @@ const Checkout = () => {
                         </p>
                       </div>
 
-                      <hr className="heading-hr" />
+                      <hr className="heading-hr" /> */}
                     </ReactPlaceholder>
                   </div>
                 </div>

@@ -27,14 +27,16 @@ import {
 import ModalLayout from "./layout/ModalLayout";
 import { ageCheckSuccess } from "../features/ageCheckSlice";
 import AlertBox from "./layout/AlertBox";
+import useGeoLocation from "react-ipgeolocation";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useGeoLocation();
+  console.log("IN HOME", { location })
   const { token } = useSelector((state) => state.auth);
 
-  const { data: categoryData, isLoading: categoryLoading } =
-    useGetAllCategoriesQuery();
+  const { data: categoryData, isLoading: categoryLoading } = useGetAllCategoriesQuery(location);
   // const { promotions, loadingPromotion, promotionsErr } = useSelector(
   //   (state) => state.promotions
   // );
@@ -143,7 +145,7 @@ const Home = () => {
         {/* </ReactPlaceholder> */}
         <section className="sec-1">
           <div className="sec-1-heading">
-            <h1 className="h-heading">Choose a Fortification</h1>
+            <h1 className="h-heading">Choose Category</h1>
           </div>
           <div className="sec-1-body">
             <Row className="m-0 gap-2 justify-content-center align-items-center">
@@ -154,20 +156,20 @@ const Home = () => {
                 rows={5}
                 ready={!categoryLoading}
               >
-              {categoryData?.categories?.length <= 0 ? (
-                <AlertBox
-                  type={"danger"}
-                  heading={"Something went wrong!"}
-                  desc={"We are working on resolving the issue."}
-                  onHome={true}
-                />
-              ) : (
-                categoryData?.categories?.map((item) => (
-                  <Col lg={2} md={4} key={item._id}>
-                    <ReactCard item={item} />
-                  </Col>
-                ))
-              )}
+                {categoryData?.categories?.length <= 0 ? (
+                  <AlertBox
+                    type={"danger"}
+                    heading={"Something went wrong!"}
+                    desc={"We are working on resolving the issue."}
+                    onHome={true}
+                  />
+                ) : (
+                  categoryData?.categories?.map((item) => (
+                    <Col lg={2} md={4} key={item._id}>
+                      <ReactCard item={item} />
+                    </Col>
+                  ))
+                )}
               </ReactPlaceholder>
             </Row>
           </div>

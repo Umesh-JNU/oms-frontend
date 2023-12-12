@@ -69,100 +69,42 @@ const CartItem = ({ cartItem }) => {
     <>
       <div className="cart-item">
         <Row>
-          <Col>
-            <img
-              src={cartItem?.product?.pid?.product_img}
-              // src={cartItem?.product?.pid?.product_images[0]}
-              alt="productImage"
-              className="cart-item-img"
-            />
+          <Col sm={4}>
+            <div>
+              <img
+                src={cartItem?.product?.pid?.product_img}
+                // src={cartItem?.product?.pid?.product_images[0]}
+                alt="productImage"
+                className="img-fluid"
+              />
+            </div>
           </Col>
-          <Col>
+          <Col sm={4} className="f-center flex-column">
             {isFetching ? (
               <div className="overlay-cart">
-                <p className="cart-prod-name">{cartItem?.product?.pid?.name}</p>
-                <p className="cart-prod-cate">{category?.name}</p>
-                <div className="cart-prod-subProd">
-                  <div>
-                    {inSalePrice?.filter(
-                      (inSale) => inSale?.id === cartItem?.product?._id
-                    )?.length > 0 ? (
-                      <div className="cart-prod-sale">
-                        <p className="cart-prod-price-old">
-                          $ {cartItem?.product?.amount?.toFixed(2)}
-                        </p>
-
-                        {inSalePrice
-                          ?.filter(
-                            (inSale) => inSale?.id === cartItem?.product?._id
-                          )
-                          ?.map((sale) => (
-                            <p className="cart-prod-updated-price">
-                              $ {sale?.updatedAmount?.toFixed(2)}
-                            </p>
-                          ))}
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="cart-prod-price">
-                          $ {cartItem?.product?.amount?.toFixed(2)}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  <p className="cart-prod-qname">{cartItem?.product?.qname}</p>
-                </div>
+                <h6>
+                  {cartItem?.product?.pid?.name}
+                </h6>
+                <p className="mt-2">{category?.name}</p>
               </div>
             ) : (
-              <>
-                <p
-                  className="cart-prod-name"
-                  onClick={() => navigate(`/home/product/${cartItem?.product?.pid?._id}?subId=${cartItem?.product?._id}`)}
+              <div>
+                <h6 onClick={() => navigate(`/home/product/${cartItem?.product?.pid?._id}?subId=${cartItem?.product?._id}`)}
                 >
                   {cartItem?.product?.pid?.name}
-                </p>
+                </h6>
                 <p
-                  className="cart-prod-cate"
+                  className="mt-2"
                   onClick={() => navigate(`/shop/${cartItem?.product?.pid?.category}`)}
                 >
                   {category?.name}
                 </p>
-                <div className="cart-prod-subProd">
-                  <div>
-                    {inSalePrice?.filter(
-                      (inSale) => inSale?.id === cartItem?.product?._id
-                    )?.length > 0 ? (
-                      <div className="cart-prod-sale">
-                        <p className="cart-prod-price-old">
-                          $ {cartItem?.product?.amount?.toFixed(2)}
-                        </p>
-
-                        {inSalePrice
-                          ?.filter(
-                            (inSale) => inSale?.id === cartItem?.product?._id
-                          )
-                          ?.map((sale) => (
-                            <p className="cart-prod-updated-price">
-                              $ {sale?.updatedAmount?.toFixed(2)}
-                            </p>
-                          ))}
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="cart-prod-price">
-                          $ {cartItem?.product?.amount?.toFixed(2)}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  <p className="cart-prod-qname">{cartItem?.product?.qname}</p>
-                </div>
-              </>
+              </div>
             )}
           </Col>
-          <Col>
+          <Col sm={4} className="f-center flex-column position-relative">
+            <IoMdClose className="close-btn" onClick={() => handleDelete()} />
             <div className="btn-box">
-              <IoMdClose className="close-btn" onClick={() => handleDelete()} />
               <div className="prod-btn-box-1">
                 {isFetching ? (
                   <div
@@ -191,7 +133,7 @@ const CartItem = ({ cartItem }) => {
             </div>
           </Col>
         </Row>
-      </div>
+      </div >
       <ToastContainer />
     </>
   );

@@ -12,6 +12,7 @@ import {
   AiOutlineShop,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import { FaEnvelopesBulk } from "react-icons/fa6";
 import { MdOutlineLogin, MdOutlineLogout } from "react-icons/md";
 import { HiOutlineUser } from "react-icons/hi";
 import DropdownComp from "./DropdownComp";
@@ -221,6 +222,17 @@ function ReactHeader() {
                     to={"/home/my-account"}
                   >
                     <HiOutlineUser />
+                  </Link>
+                )}
+
+                {token && (
+                  <Link
+                    role="button"
+                    className="nav-link"
+                    tabIndex="0"
+                    to={"/home/chats"}
+                  >
+                    <FaEnvelopesBulk />
                   </Link>
                 )}
 
