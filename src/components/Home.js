@@ -57,7 +57,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (!token && !location) {
+    if (!location) {
       setModal(true);
     }
   }, [token, location]);
