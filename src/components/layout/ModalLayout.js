@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, Modal, Spinner } from "react-bootstrap";
 
 const ModalLayout = ({
+  title,
   status,
   show,
   handleAddAddress,
@@ -19,26 +20,22 @@ const ModalLayout = ({
   handleDelete,
   backdrop,
   scrollable,
-  handleCloseAge,
 }) => {
   // in this modal based on status you decide you can render this modal
   // you can even customize this modal based on your status that you choose like the one's I have used below
+  const [location, setLocation] = useState("US");
 
   return (
     <Modal
       show={show}
-      onHide={handleClose}
+      onHide={() => handleClose(location)}
       backdrop={backdrop}
       scrollable={scrollable}
     >
       <Modal.Header closeButton>
-        {status === "add" && <Modal.Title>Add your new address</Modal.Title>}
-        {status === "edit" && <Modal.Title>Edit your address</Modal.Title>}
-        {status === "delete" && (
-          <Modal.Title>Are you sure you want to delete?</Modal.Title>
-        )}
-        {status === "ageCheck" && <Modal.Title>Confirm your age</Modal.Title>}
+        <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
+
       <Modal.Body>
         {status === "add" && (
           <Form onSubmit={handleAddAddress}>
@@ -202,28 +199,49 @@ const ModalLayout = ({
 
         {status === "delete" && "You can delete your address here!"}
 
-        {status === "ageCheck" && (
+        {status === "location" && (
           <div>
-            <p>Please confirm you are 19+ years old to continue.</p>
+            <p>
+              Please select your country for a better and personalized experience. Choosing your country allows us to provide you with relevant information, services, and products tailored to your location.
+            </p>
+
+            <Form.Group className="mt-3">
+              <Form.Check
+                inline
+                label="US"
+                name="location"
+                type={"radio"}
+                checked={location === "US"}
+                onChange={(e) => setLocation("US")}
+              />
+              <Form.Check
+                inline
+                label="Canada"
+                name="location"
+                type={"radio"}
+                checked={location === "CA"}
+                onChange={(e) => setLocation("CA")}
+              />
+            </Form.Group>
           </div>
         )}
       </Modal.Body>
 
       <Modal.Footer>
-        {status !== "ageCheck" && (
+        {status !== "location" && (
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
         )}
 
-        {status === "ageCheck" && (
+        {status === "location" && (
           <>
-            <Button variant="danger" onClick={handleClose}>
-              No
+            <Button variant="danger" onClick={() => handleClose(location)}>
+              Close
             </Button>
 
-            <Button variant="primary" onClick={handleCloseAge}>
-              Yes
+            <Button variant="primary" onClick={() => handleClose(location)}>
+              Submit
             </Button>
           </>
         )}

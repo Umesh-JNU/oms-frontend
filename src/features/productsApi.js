@@ -13,8 +13,8 @@ export const productsApi = createApi({
     }),
     getAllCategories: builder.query({
       query: (location) => {
-        console.log({ location });
-        return `/api/category/all/?location=${location.country === 'IN' ? 'CA' : 'US'}`;
+        console.log("getAllCateogries",{ location });
+        return `/api/category/all/?location=${location}`;
       }
     }),
     getCategory: builder.query({

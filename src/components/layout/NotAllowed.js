@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { ageCheckSuccess } from "../../features/ageCheckSlice";
+import { locationSuccess } from "../../features/locationSlice";
 import ModalLayout from "./ModalLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const NotAllowed = () => {
-  const { ageCheck } = useSelector((state) => state.ageCheck);
+  const { location } = useSelector((state) => state.location);
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const NotAllowed = () => {
               accessing the site.
             </div>
           </div>
-          {(!ageCheck || ageCheck === null) && (
+          {(!location || location === null) && (
             <div className="hard-reload-btn">
               <Button
                 variant="dark"
@@ -49,17 +49,17 @@ const NotAllowed = () => {
 
       {modal && (
         <ModalLayout
-          status={"ageCheck"}
+          status={"location"}
           backdrop={"static"}
           show={modal}
           scrollable={"false"}
           handleClose={() => {
-            dispatch(ageCheckSuccess(false));
+            dispatch(locationSuccess(false));
             navigate("/restricted");
             setModal(false);
           }}
           handleCloseAge={() => {
-            dispatch(ageCheckSuccess(true));
+            dispatch(locationSuccess(true));
             setModal(!modal);
             navigate("/");
           }}

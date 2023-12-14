@@ -23,11 +23,15 @@ const authSlice = createSlice({
 
       console.log({ user, token });
       state.isFetching = false;
-      state.user = { _id: action.payload.user._id, username: action.payload.user.firstname + ' ' + action.payload.user.lastname };
+      state.user = {
+        _id: action.payload.user._id,
+        username: action.payload.user.firstname + ' ' + action.payload.user.lastname,
+        country: action.payload.user.country
+      };
       state.token = action.payload.token;
 
       localStorage.setItem("userToken", state.token);
-      localStorage.setItem("user", JSON.stringify({ _id: action.payload.user._id, username: action.payload.user.firstname + ' ' + action.payload.user.lastname }));
+      localStorage.setItem("user", JSON.stringify(state.user));
     },
     loginFailure: (state, action) => {
       state.errMsg = action.payload;

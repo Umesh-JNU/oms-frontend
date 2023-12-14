@@ -80,7 +80,7 @@ const Product = ({ item, loading }) => {
           <div className="product-detail px-2">
             <div className="prods-sub-details">
               <p className="mb-0" style={{ fontWeight: 600 }}>
-                {item?.name},
+                {item?.name}
               </p>
               <p
                 className="mb-0"
@@ -126,7 +126,8 @@ const Product = ({ item, loading }) => {
             </Col>
             <Col>
               <Button variant="dark" className="cart-btn" onClick={() => handleCart(item, count, item?.amount)} disabled={!stock}>
-                {stock ? 'Add to cart' : 'Out of Stock'}
+                {/* {stock ? 'Add to cart' : 'Out of Stock'} */}
+                Add to cart
               </Button>
             </Col>
           </Row>

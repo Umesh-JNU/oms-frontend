@@ -107,52 +107,6 @@ const Cart = () => {
                 onHome={true}
               />
             </div>
-
-            {/* <ReactPlaceholder
-              type="text"
-              color="#F0F0F0"
-              showLoadingAnimation
-              rows={5}
-              ready={!loading && !isFetching}
-            >
-              <div className="shipping-details-cart-cont">
-                <div className="shipping-details-cart-heading">
-                  <AiOutlineInfoCircle
-                    style={{
-                      marginRight: "0.3rem",
-                    }}
-                  />
-                  <p>Please note</p>
-                </div>
-                {shippingDetails?.map((shippingDetail) => (
-                  <div
-                    className="shipping-details-cart"
-                    key={shippingDetail?._id}
-                  >
-                    <div>
-                      <p>
-                        <FaHandPointRight
-                          style={{
-                            marginRight: "1rem",
-                          }}
-                        />{" "}
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="shipping-details-label">
-                        {shippingDetail?.label}
-                      </p>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: formatText(shippingDetail?.description),
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </ReactPlaceholder> */}
           </div>
 
           <Row className="product-content justify-content-center">
@@ -197,56 +151,6 @@ const Cart = () => {
                 </Button>
               )}
             </Col>
-
-            {/* <Col md={8} lg={5}>
-              <h3 className="mb-3 mt-4">Cart Totals</h3>
-              <div className="cart-detail-table">
-                <>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div>
-                      <h6>SUBTOTAL</h6>
-                    </div>
-                    <div>
-                      <ReactPlaceholder
-                        type="text"
-                        color="#F0F0F0"
-                        showLoadingAnimation
-                        rows={1}
-                        ready={!isFetching}
-                      >
-                        <span>$ {cartTotalAmount?.toFixed(2)}</span>
-                      </ReactPlaceholder>
-                    </div>
-                  </div>
-                </>
-              </div>
-              <h5
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  padding: "1rem 0",
-                  marginTop: "2rem",
-                }}
-              >
-                <span>Total</span>
-                <ReactPlaceholder
-                  type="text"
-                  color="#F0F0F0"
-                  showLoadingAnimation
-                  rows={1}
-                  ready={!isFetching}
-                >
-                  <span>$ {cartTotalAmount?.toFixed(2)}</span>
-                </ReactPlaceholder>
-              </h5>
-              
-            </Col> */}
           </Row>
 
         </Container>

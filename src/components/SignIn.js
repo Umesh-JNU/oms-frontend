@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
-import ReactBreadcrumb from "./layout/BreadCrumb";
-import { Container, Row, Form, Col, Button, Spinner } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-
-
-import { login } from "../features/apiCall";
 import { motion } from "framer-motion";
-// import { ageCheckSuccess } from "../../features/ageCheckSlice";
-// import ModalLayout from "../layout/ModalLayout";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { Container, Form, Button, Spinner } from "react-bootstrap";
+
+import ModalLayout from "./layout/ModalLayout";
+import { login } from "../features/apiCall";
+import { locationSuccess } from "../features/locationSlice";
 
 const SignIn = () => {
   const { isFetching, error, errMsg, token } = useSelector(
     (state) => state.auth
   );
-  const { ageCheck } = useSelector((state) => state.ageCheck);
+  const { location } = useSelector((state) => state.location);
   const [modal, setModal] = useState(false);
   const [values, setValues] = useState({
     email: "",
@@ -38,10 +36,10 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (!token && !ageCheck) {
+    if (!token && !location) {
       setModal(true);
     }
-  }, [token, ageCheck]);
+  }, [token, location]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -66,10 +64,9 @@ const SignIn = () => {
     setIsLoogedIn(false);
   }
 
-  // const path = window.location.pathname;
   return (
     <>
-      {/* {(ageCheck || token) && ( */}
+
       <motion.div
         initial={{ x: "-100%" }}
         animate={{ x: "0%" }}
@@ -81,9 +78,6 @@ const SignIn = () => {
             <Link to="/home/sign-in" className="toggle-link-item active-link">
               Login
             </Link>
-            {/* <Link to="/home/sign-up" className="toggle-link-item">
-                Register
-              </Link> */}
           </div>
           <div className="form-box">
             <Form onSubmit={handleSubmit}>
@@ -116,24 +110,20 @@ const SignIn = () => {
           </div>
         </Container>
       </motion.div>
-      {/* )} */}
 
-      {/* {modal && (
+      {modal && !location && (
         <ModalLayout
-          status={"ageCheck"}
+          title={"Your Country"}
+          status={"location"}
           backdrop={"static"}
           show={modal}
           scrollable={"false"}
-          handleClose={() => {
-            dispatch(ageCheckSuccess(false));
-            navigate("/restricted");
-          }}
-          handleCloseAge={() => {
-            dispatch(ageCheckSuccess(true));
+          handleClose={(loc) => {
+            dispatch(locationSuccess(loc));
             setModal(!modal);
           }}
         />
-      )} */}
+      )}
       <ToastContainer />
     </>
   );

@@ -12,7 +12,7 @@ import {
   AiOutlineShop,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { FaEnvelopesBulk } from "react-icons/fa6";
+import { BiMessageDetail } from "react-icons/bi";
 import { MdOutlineLogin, MdOutlineLogout } from "react-icons/md";
 import { HiOutlineUser } from "react-icons/hi";
 import DropdownComp from "./DropdownComp";
@@ -194,12 +194,12 @@ function ReactHeader() {
                           marginTop: "0.5rem",
                           zIndex: "3",
                         }}
-                      /> 
+                      />
                       {!isFetching && (
                         <Badge
                           className={`${cartItems?.length === 0
-                              ? "no-cart-badge"
-                              : "cart-badge"
+                            ? "no-cart-badge"
+                            : "cart-badge"
                             }`}
                           pill
                           bg={`${path.pathname === "/" ? "light" : "dark"}`}
@@ -232,18 +232,7 @@ function ReactHeader() {
                     tabIndex="0"
                     to={"/home/chats"}
                   >
-                    <FaEnvelopesBulk />
-                  </Link>
-                )}
-
-                {cartItems?.length !== 0 && token && (
-                  <Link
-                    role="button"
-                    className="nav-link"
-                    tabIndex="0"
-                    to="/home/checkout-address"
-                  >
-                    <div className="checkout-link">Checkout</div>
+                    <BiMessageDetail />
                   </Link>
                 )}
 
@@ -407,19 +396,6 @@ function ReactHeader() {
                         </Link>
                       )}
 
-                      {cartItems.length !== 0 && token && (
-                        <Link
-                          role="button"
-                          className="nav-link"
-                          tabIndex="0"
-                          style={{ width: "fit-content" }}
-                          to="/home/checkout-address"
-                          onClick={() => setExpand(!expand)}
-                        >
-                          <div className="checkout-link">checkout</div>
-                        </Link>
-                      )}
-
                       {token ? (
                         <Link
                           role="button"
@@ -449,20 +425,6 @@ function ReactHeader() {
                           <div className="checkout-link">Login</div>
                         </Link>
                       )}
-                      {/* <Link
-                        role="button"
-                        className="nav-link"
-                        tabIndex="0"
-                        onClick={() => {
-                          handleLogout();
-                          setExpand(!expand);
-                        }}
-                        to={"/"}
-                      >
-                        <div className="checkout-link">
-                          {token ? "Logout" : "Login"}
-                        </div>
-                      </Link> */}
                     </Nav>
                   </Offcanvas.Body>
                 </Navbar.Offcanvas>

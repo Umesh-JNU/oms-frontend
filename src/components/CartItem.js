@@ -91,7 +91,7 @@ const CartItem = ({ cartItem }) => {
               <div>
                 <h6 onClick={() => navigate(`/home/product/${cartItem?.product?.pid?._id}?subId=${cartItem?.product?._id}`)}
                 >
-                  {cartItem?.product?.pid?.name}
+                  {cartItem?.product?.pid?.name}, {cartItem?.product?.quantity} {category?.location === 'CA' ? 'ml' : 'fl. Oz.'}
                 </h6>
                 <p
                   className="mt-2"

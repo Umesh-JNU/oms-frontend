@@ -9,7 +9,7 @@ import couponsCodeReducer from "./couponCodeSlice";
 import addressesReducer from "./allAddressSlice";
 import addressReducer from "./setChecAddr";
 import buyAgainReducer from "./buyAgain";
-import ageCheckReducer from "./ageCheckSlice";
+import locationReducer from "./locationSlice";
 import ordersReducer from "./ordersSlice";
 import getProductReducer from "./getProdSlice";
 import productListReducer from "./productListSlice";
@@ -28,7 +28,7 @@ export default configureStore({
     coupons: couponsCodeReducer,
     addresses: addressesReducer,
     address: addressReducer,
-    ageCheck: ageCheckReducer,
+    location: locationReducer,
     orders: ordersReducer,
     buyAgain: buyAgainReducer,
     promotions: promotionsReducer,

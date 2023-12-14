@@ -4,21 +4,21 @@ import ReactPlaceholder from "react-placeholder";
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import axios from "../utils/axios";
 import { useDispatch, useSelector } from "react-redux";
-import { faqFailure, faqStart, faqSuccess } from "../features/faqSlice";
-import { ageCheckSuccess } from "../features/ageCheckSlice";
-import ModalLayout from "./layout/ModalLayout";
-import { useNavigate } from "react-router-dom";
+
+import axios from "../utils/axios";
 import AlertBox from "./layout/AlertBox";
+import ModalLayout from "./layout/ModalLayout";
+
+import { locationSuccess } from "../features/locationSlice";
+import { faqFailure, faqStart, faqSuccess } from "../features/faqSlice";
 
 function FaqPage() {
   const { token } = useSelector((state) => state.auth);
-  const { ageCheck } = useSelector((state) => state.ageCheck);
+  const { location } = useSelector((state) => state.location);
   const { faq, loading, error } = useSelector((state) => state.faq);
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const fetchFaq = async () => {
     dispatch(faqStart());
@@ -27,18 +27,18 @@ function FaqPage() {
         headers: { Authorization: token },
       });
 
+      console.log("GETTING FAQ", { data })
       dispatch(faqSuccess(data?.faqs));
     } catch (error) {
-      // console.log(error?.response?.data?.error?.message);
       dispatch(faqFailure(error?.response?.data?.error?.message));
     }
   };
 
   useEffect(() => {
-    if (!token && !ageCheck) {
+    if (!token && !location) {
       setModal(true);
     }
-  }, [token, ageCheck]);
+  }, [token, location]);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -46,17 +46,9 @@ function FaqPage() {
     fetchFaq();
   }, []);
 
-  console.log(Object.entries(faq)?.forEach(([key, value]) => key));
-  // Object.entries(faq)?.forEach(([key, value]) => {
-  //   // console.log(key, value);
-  //   value
-  //     ?.filter((faq) => faq?.type === key)
-  //     ?.map((faq) => console.log(faq?.type));
-  // });
-
   return (
     <>
-      {(ageCheck || token) && (
+      {(location || token) && (
         <motion.div
           initial={{ x: "-100%" }}
           animate={{ x: "0%" }}
@@ -87,66 +79,36 @@ function FaqPage() {
                   type={"dark"}
                 />
               ) : (
-                <>
-                  {/* <h5
-                    className="my-4 fade-color"
-                    style={{
-                      textTransform: "capitalize",
-                    }}
-                  >
-                    {Object.entries(faq)?.forEach(([key, value]) => key)}
-                  </h5> */}
-                  {Object.entries(faq)?.map((faq) =>
-                    faq[1]?.map((faq) => (
-                      <>
-                        <h5
-                          className="my-4 fade-color"
-                          style={{
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          {faq?.type}
-                        </h5>
-                        <Accordion flush>
-                          <Accordion.Item eventKey="0">
-                            <Accordion.Header>
-                              <span
-                                style={{
-                                  textTransform: "capitalize",
-                                }}
-                              >
-                                {faq?.question}
-                              </span>
-                            </Accordion.Header>
-                            <Accordion.Body>{faq?.answer}</Accordion.Body>
-                          </Accordion.Item>
-                          {/* <Accordion.Item eventKey="1">
-                          <Accordion.Header>{faq?.question}</Accordion.Header>
-                          <Accordion.Body>{faq?.answer}</Accordion.Body>
-                        </Accordion.Item> */}
-                        </Accordion>
-                      </>
-                    ))
-                  )}
-                </>
+                <Accordion flush>
+                  {faq?.map(({ _id, question, answer }) => (
+                    <Accordion.Item key={_id} eventKey={_id}>
+                      <Accordion.Header>
+                        <span style={{ textTransform: "capitalize" }}>
+                          {question}
+                        </span>
+                      </Accordion.Header>
+
+                      <Accordion.Body>
+                        {answer}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ))}
+                </Accordion>
               )}
             </ReactPlaceholder>
           </Container>
-        </motion.div>
+        </motion.div >
       )}
 
-      {modal && (
+      {modal && !location && (
         <ModalLayout
-          status={"ageCheck"}
+          title={"Your Country"}
+          status={"location"}
           backdrop={"static"}
           show={modal}
           scrollable={"false"}
-          handleClose={() => {
-            dispatch(ageCheckSuccess(false));
-            navigate("/restricted");
-          }}
-          handleCloseAge={() => {
-            dispatch(ageCheckSuccess(true));
+          handleClose={(loc) => {
+            dispatch(locationSuccess(loc));
             setModal(!modal);
           }}
         />

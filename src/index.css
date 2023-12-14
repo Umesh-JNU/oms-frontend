@@ -3,6 +3,7 @@
 @import "react-alice-carousel/lib/alice-carousel.css";
 @import "react-toastify/dist/ReactToastify.css";
 @import "react-chat-elements/dist/main.css";
+@import "react-slideshow-image/dist/styles.css";
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 :root {
@@ -2931,4 +2932,9 @@ hr {
     width: 90%;
     /* font-size: 0.8rem; */
   }
+}
+
+.magnify > div:nth-child(3) {
+  background-color: #fff;
+  z-index: 1;
 }
