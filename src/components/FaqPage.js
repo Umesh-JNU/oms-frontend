@@ -88,7 +88,7 @@ function FaqPage() {
                         </span>
                       </Accordion.Header>
 
-                      <Accordion.Body>
+                      <Accordion.Body style={{ backgroundColor: 'aliceblue' }}>
                         {answer}
                       </Accordion.Body>
                     </Accordion.Item>

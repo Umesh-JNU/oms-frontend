@@ -107,7 +107,7 @@ const Footer = () => {
                       <p>Sign in</p>
                     </Link>
                     <Link to="home/my-orders">
-                      <p>Order Status</p>
+                      <p>My Order</p>
                     </Link>
                   </div>
                 </div>
