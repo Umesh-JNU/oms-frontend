@@ -2283,6 +2283,10 @@ hr {
   box-shadow: inset 0 5px 5px -3px #a89a9a;
 }
 
+.rce-mbox-photo--img img {
+  max-width: 250px;
+}
+
 .rce-mbox-photo--download {
   align-items: center;
 }
@@ -2934,7 +2938,7 @@ hr {
   }
 }
 
-.magnify > div:nth-child(3) {
+.magnify>div:nth-child(3) {
   background-color: #fff;
   z-index: 1;
 }

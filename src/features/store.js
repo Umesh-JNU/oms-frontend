@@ -13,7 +13,7 @@ import locationReducer from "./locationSlice";
 import ordersReducer from "./ordersSlice";
 import getProductReducer from "./getProdSlice";
 import productListReducer from "./productListSlice";
-import promotionsReducer from "./promotionsSlice";
+import bannerReducer from "./bannerSlice";
 import shippingDetailsReducer from "./shippingDetailsSlice";
 import faqReducer from "./faqSlice";
 import { productsApi } from "./productsApi";
@@ -31,7 +31,7 @@ export default configureStore({
     location: locationReducer,
     orders: ordersReducer,
     buyAgain: buyAgainReducer,
-    promotions: promotionsReducer,
+    banner: bannerReducer,
     product: getProductReducer,
     faq: faqReducer,
     shippingDetails: shippingDetailsReducer,

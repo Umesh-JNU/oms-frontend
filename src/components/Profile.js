@@ -14,12 +14,13 @@ import ReactPlaceholder from "react-placeholder";
 
 import { ToastContainer, toast } from "react-toastify";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { motion } from "framer-motion";
 import { BiCopy } from "react-icons/bi";
+import { updateProfileSuccess } from "../features/authSlice";
 
 const ContentContainer = ({ no, item }) => {
   return (
@@ -42,6 +43,8 @@ const ContentContainer = ({ no, item }) => {
 };
 
 const AccountForm = () => {
+  const dispatch = useDispatch();
+
   const [values, setValues] = useState({
     firstname: "",
     lastname: "",
@@ -82,16 +85,17 @@ const AccountForm = () => {
   };
 
   const updateProfile = async () => {
-    const { firstname, lastname, email, fax, mobile_no } = values;
+    const { firstname, lastname, email, mobile_no } = values;
     setLoading(true);
     await axios.put(
       "/api/user/update-profile",
-      { firstname, lastname, email, mobile_no, fax },
+      { firstname, lastname, email, mobile_no },
       { headers: { Authorization: `${token}` } }
     );
 
     setLoading(false);
-
+    dispatch(updateProfileSuccess({ username: firstname + ' ' + lastname }));
+    
     toast.success("Details updated!", toastOptions);
   };
 

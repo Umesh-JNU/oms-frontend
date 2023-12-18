@@ -38,18 +38,22 @@ const readFileAsBlob = (file) => {
 const Chat = () => {
   const { user, token } = useSelector((state) => state.auth);
 
-  // TWILIO CLIENT
+  const inputRef = useRef(null);
+  const inputFileRef = useRef(null);
+  const messageBoxRef = useRef(null);
+
   const [client, setClient] = useState();
   const [convSID, setConvSID] = useState();
-  const [conversation, setConversation] = useState();
-  console.log({ client, convSID });
-
-  const [loadingMsg, setLoadingMsg] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState();
+  const [conversation, setConversation] = useState();
+  const [loadingMsg, setLoadingMsg] = useState(false);
+  console.log({ client, convSID, user });
 
   const getFormattedMsg = async (message) => {
-    const { body, attributes, author, media, type, timestamp } = message.state;
-    console.log({ body, attributes, author, media, type, timestamp })
+    const { body, author, media, type, timestamp } = message.state;
+    console.log({ body, author, media, type, timestamp })
 
     const obj = {
       position: author === user?._id ? "right" : "left",
@@ -111,17 +115,6 @@ const Chat = () => {
     }
   }, [client, convSID]);
 
-
-
-  const inputRef = useRef(null);
-  const inputFileRef = useRef(null);
-  const messageBoxRef = useRef(null);
-
-  const [loading, setLoading] = useState(false);
-  const [chat, setChat] = useState();
-  const [inputValue, setInputValue] = useState();
-  console.log({ chat, user })
-
   useEffect(() => {
     const handleNewMessage = async (message) => {
       const formattedMsg = await formatMessage(message, OBJ);
@@ -153,6 +146,7 @@ const Chat = () => {
         );
 
         console.log({ data })
+
         if (data.access_token) {
           let twiClient = new Client(data.access_token);
           twiClient.on('initialized', () => {
@@ -175,10 +169,6 @@ const Chat = () => {
             }
           });
 
-          const allConv = await twiClient.getSubscribedConversations();
-          const allUsers = await twiClient.getSubscribedUsers();
-          console.log({ allConv, allUsers })
-          setChat(data.chat);
           setConvSID(data.chat.conversationSID);
           setLoading(false);
         }
@@ -198,26 +188,24 @@ const Chat = () => {
 
   const sendMessage = async () => {
     inputRef.current.value = '';
+    inputFileRef.current.value = '';
     inputRef.current.focus();
 
-    if (!inputValue) {
-      return;
-    }
+    if (!inputValue) { return; }
+
     console.log({ t: typeof inputValue, inputValue })
     try {
-      inputFileRef.current.value = '';
-      if (typeof inputValue === 'object') {
-        const sentMediaMsg = await conversation.prepareMessage().addMedia(inputValue).setAttributes({ authorName: user?.username, content_type: inputValue.contentType }).build().send();
-        console.log({ sentMediaMsg })
-      } else {
-        await conversation.sendMessage(inputValue, {
-          authorName: user?.username
-        })
 
-        const unread = await conversation.getUnreadMessagesCount();
-        const msg = await conversation.getMessages();
-        console.log({ msg, unread });
+      if (typeof inputValue === 'object') {
+        await conversation.prepareMessage().addMedia(inputValue).build().send();
+      } else {
+        await conversation.sendMessage(inputValue);
       }
+      await axios.put("/api/chat/read-horizon", {
+        convSID, user: user.pid
+      }, {
+        headers: { Authorization: token }
+      });
       setInputValue('');
 
     } catch (err) {
@@ -249,7 +237,6 @@ const Chat = () => {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault(); // Prevent the default behavior of the Enter key
-      // Your logic to send the message
       sendMessage();
     }
   };

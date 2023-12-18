@@ -25,8 +25,7 @@ const authSlice = createSlice({
       state.isFetching = false;
       state.user = {
         _id: action.payload.user._id,
-        username: action.payload.user.firstname + ' ' + action.payload.user.lastname,
-        country: action.payload.user.country
+        username: action.payload.user.firstname + ' ' + action.payload.user.lastname
       };
       state.token = action.payload.token;
 
@@ -93,7 +92,6 @@ const authSlice = createSlice({
 
       localStorage.setItem("userToken", state.token);
       localStorage.setItem("user", JSON.stringify({ _id: action.payload.user._id, username: action.payload.user.firstname + ' ' + action.payload.user.lastname }));
-
     },
     registerFailure: (state, action) => {
       state.isFetching = false;
@@ -101,6 +99,15 @@ const authSlice = createSlice({
       state.errMsg = action.payload;
     },
 
+    updateProfileSuccess: (state, action) => {
+      state.error = false;
+      state.errMsg = "";
+
+      state.isFetching = false;
+      state.user = { _id: state.user._id, username: action.payload.username };
+
+      localStorage.setItem("user", JSON.stringify({ _id: state.user._id, username: action.payload.username }));
+    },
     logOut: (state, action) => {
       state.user = null;
       state.token = null;
@@ -124,5 +131,6 @@ export const {
   registerSuccess,
   registerStart,
   registerFailure,
+  updateProfileSuccess
 } = authSlice.actions;
 export default authSlice.reducer;

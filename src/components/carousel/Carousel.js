@@ -1,17 +1,17 @@
 import { Carousel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-export default function CustomCarousel({ promotions }) {
-  console.log({ promotions })
+export default function CustomCarousel({ banners }) {
+  console.log({ banners })
   const navigate = useNavigate();
   return (
     <>
       <Carousel style={{ cursor: "pointer", backgroundColor: "#000" }}>
-        {promotions?.map((promo) => (
-          <Carousel.Item key={promo?.promo_image}>
+        {banners?.map((banner) => (
+          <Carousel.Item key={banner?.img_url}>
             <img
               className="d-block w-100"
-              src={promo?.promo_image}
+              src={banner?.img_url}
               alt="First slide"
             />
           </Carousel.Item>

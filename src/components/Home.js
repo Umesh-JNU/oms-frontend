@@ -17,10 +17,10 @@ import axios from "../utils/axios";
 import { useGetAllCategoriesQuery } from "../features/productsApi";
 import { getCart } from "../features/apiCall";
 import {
-  promotionFailure,
-  promotionStart,
-  promotionSuccess,
-} from "../features/promotionsSlice";
+  bannerFailure,
+  bannerStart,
+  bannerSuccess,
+} from "../features/bannerSlice";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -31,28 +31,24 @@ const Home = () => {
   const [modal, setModal] = useState(false);
 
   const { data: categoryData, isLoading: categoryLoading } = useGetAllCategoriesQuery(location);
-  // const { promotions, loadingPromotion, promotionsErr } = useSelector(
-  //   (state) => state.promotions
-  // );
-  // console.log({promotions})
-  const promotions = [
-    { promo_image: "/images/carousel/carousel1.png" },
-    { promo_image: "/images/carousel/carousel2.png" },
-  ]
+  const { banners, loadingBanner, bannerErr } = useSelector((state) => {
+    console.log(state);
+    return state.banner
+  });
+  console.log({ banners })
 
   const carouselDetails = async () => {
-    dispatch(promotionStart());
+    dispatch(bannerStart());
 
     try {
-      const { data } = await axios.get("/api/promotion/all", {
+      const { data } = await axios.get("/api/banner/all", {
         headers: { Authorization: `${token}` },
       });
 
-      // console.log("carousel ", data);
-      // setPromotions(data?.promotions);
-      dispatch(promotionSuccess(data?.promotions));
+      console.log("carousel ", data);
+      dispatch(bannerSuccess(data?.banners));
     } catch (error) {
-      dispatch(promotionFailure(error?.response?.data));
+      dispatch(bannerFailure(error?.response?.data));
     }
   };
 
@@ -85,16 +81,16 @@ const Home = () => {
           exit={{ x: "100%" }}
           transition={{ duration: 0.75, ease: "easeInOut" }}
         >
-          {/* <ReactPlaceholder
-          type="text"
-          color="#F0F0F0"
-          showLoadingAnimation
-          rows={5}
-          style={{ width: "60%", margin: "auto" }}
-          ready={!loadingPromotion}
-        > */}
-          <CustomCarousel promotions={promotions} />
-          {/* </ReactPlaceholder> */}
+          <ReactPlaceholder
+            type="text"
+            color="#F0F0F0"
+            showLoadingAnimation
+            rows={5}
+            style={{ width: "60%", margin: "auto" }}
+            ready={!loadingBanner}
+          >
+            <CustomCarousel banners={banners} />
+          </ReactPlaceholder>
           <section className="sec-1">
             <div className="sec-1-heading">
               <h1 className="h-heading">Choose Category</h1>
