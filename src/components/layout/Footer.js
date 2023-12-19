@@ -25,8 +25,8 @@ const Footer = () => {
             <img
               alt=""
               // src={app_logo_white}
-              src="/logo/logo.jpg"
-              width="90"
+              src="/logo/logo-light.png"
+              width="200"
               onClick={() => navigate("/")}
               style={{ cursor: "pointer" }}
             />
@@ -50,6 +50,7 @@ const Footer = () => {
         <footer
           className=""
           style={{
+            padding: "2rem 0 1rem 0", 
             width: "100%",
             position: "static",
             bottom: "0px",
@@ -58,46 +59,19 @@ const Footer = () => {
           }}
         >
           <div className="footer-div">
-            <>
-              <img
-                alt=""
-                src="/logo/logo.jpg"
-                // src={app_logo_black}
-                width="90"
-                onClick={() => navigate("/")}
-                style={{ cursor: "pointer" }}
-                // height="30"
-                // className="d-inline-block align-top app-logo"
-              />
-            </>
             <Row className="justify-content-between">
               <Col md={4} lg={"auto"}>
-                <div className="footer-icons">
-                  <div className="icons">
-                    {/* <Link to=''> */}
-                    <p>
-                      <AiOutlineInstagram />
-                    </p>
-                    {/* </Link> */}
-
-                    {/* <Link to="/"> */}
-                    <p>
-                      <RiSnapchatFill />
-                    </p>
-                    {/* </Link> */}
-                  </div>
-
-                  {/* <div className="address">
-                    <p className="address-txt">
-                      <b>Address</b>{" "}
-                      <div className="options-txt">
-                        <p>+123 654 987 877 The Bronx, NY 14568, USA</p>
-                      </div>
-                    </p>
-                  </div> */}
-                </div>
+                <img
+                  alt=""
+                  src="/logo/logo-dark.png"
+                  // src={app_logo_black}
+                  width="200"
+                  onClick={() => navigate("/")}
+                  style={{ cursor: "pointer" }}
+                // height="30"
+                // className="d-inline-block align-top app-logo"
+                />
               </Col>
-              {/* <Col xs={1} className="footer-info"> */}
               <Col md={4} lg={4}>
                 <div>
                   <p className="heading-txt">My account</p>
@@ -115,41 +89,15 @@ const Footer = () => {
               <Col md={4} lg={4}>
                 <div>
                   <p className="heading-txt">Help</p>
-
                   <div className="options-txt">
-                    {/* <Link to="/home/how-to" style={{ textDecoration: "none" }}>
-                      <p>How to</p>
-                    </Link> */}
                     <Link to="/home/faq">
                       <p>FAQ</p>
                     </Link>
-                    {/* <Link to="home/my-orders">
-                      <p>Shipping</p>
-                    </Link> */}
                   </div>
                 </div>
               </Col>
-              {/* <Col md={2} lg={2}>
-                <div>
-                  <p className="heading-txt">Shop</p>
-
-                  <div className="options-txt">
-                    <Link to="shop/6409f7606a7a170020c25018">
-                      <p>All products</p>
-                    </Link>
-
-                    <Link to="home/my-account#refer">
-                      <p>Refer a friend</p>
-                    </Link>
-
-                  </div>
-                </div>
-              </Col> */}
-
-              {/* </Col> */}
             </Row>
             <div>
-              {/* <div className="footer-divider"></div> */}
               <Row>
                 <div className="rights-footer">
                   <center>
@@ -159,7 +107,7 @@ const Footer = () => {
               </Row>
             </div>
           </div>
-        </footer>
+        </footer >
       )}
     </>
   );

@@ -12,6 +12,7 @@ import {
   AiOutlineShop,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import { MdAddShoppingCart } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { MdOutlineLogin, MdOutlineLogout } from "react-icons/md";
 import { HiOutlineUser } from "react-icons/hi";
@@ -159,12 +160,9 @@ function ReactHeader() {
                 >
                   <Link to="/">
                     <img
-                      alt="george-boston"
-                      src="/logo/logo.jpg"
-                      // src={
-                      //   path.pathname === "/" ? app_logo_white : app_logo_black
-                      // }
-                      width="45"
+                      alt="OMS"
+                      src={`/logo/logo-${path.pathname === "/" ? "light" : "dark"}.png`}
+                      width="200"
                     // height="60"
                     // className="d-inline-block align-top app-logo"
                     />
@@ -317,22 +315,20 @@ function ReactHeader() {
                           <p>Home</p>
                         </div>
                       </Link>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <AiOutlineShop
-                          style={{
-                            position: "fixed",
-                            top: "116px",
-                          }}
-                        />
-                        <NavDropdown
-                          style={{ marginLeft: "1.5rem" }}
-                          title="Shop"
-                          id="collasible-nav-dropdown"
-                        >
-                          <DropdownComp width={width} />
-                        </NavDropdown>
-                      </div>
-                      {/* <input type="text" name="search" className="" /> */}
+
+                      <Link
+                        role="button"
+                        className="nav-link"
+                        tabIndex="0"
+                        to="/home/products/?category="
+                        onClick={() => setExpand(!expand)}
+                      >
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <MdAddShoppingCart style={{ marginRight: "0.5rem" }} />
+                          <p>Products</p>
+                        </div>
+                      </Link>
+
                     </Nav>
                     {/* <Form className="d-flex"></Form> */}
 
@@ -440,10 +436,9 @@ function ReactHeader() {
                 }}
               >
                 <img
-                  alt="george-boston"
-                  src="/logo/logo.jpg"
-                  // src={path.pathname === "/" ? app_logo_white : app_logo_black}
-                  width="66"
+                  alt="OMS"
+                  src={`/logo/logo-${path.pathname === "/" ? "light" : "dark"}.png`}
+                  width="100"
                 // height="60"
                 // className="d-inline-block align-top app-logo"
                 />
