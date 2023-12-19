@@ -25,7 +25,7 @@ const Footer = () => {
             <img
               alt=""
               // src={app_logo_white}
-              src="/logo192.png"
+              src="/logo/logo.jpg"
               width="90"
               onClick={() => navigate("/")}
               style={{ cursor: "pointer" }}
@@ -61,7 +61,7 @@ const Footer = () => {
             <>
               <img
                 alt=""
-                src="/logo192.png"
+                src="/logo/logo.jpg"
                 // src={app_logo_black}
                 width="90"
                 onClick={() => navigate("/")}

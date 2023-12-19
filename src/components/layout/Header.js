@@ -160,7 +160,7 @@ function ReactHeader() {
                   <Link to="/">
                     <img
                       alt="george-boston"
-                      src="/logo192.png"
+                      src="/logo/logo.jpg"
                       // src={
                       //   path.pathname === "/" ? app_logo_white : app_logo_black
                       // }
@@ -441,7 +441,7 @@ function ReactHeader() {
               >
                 <img
                   alt="george-boston"
-                  src="/logo192.png"
+                  src="/logo/logo.jpg"
                   // src={path.pathname === "/" ? app_logo_white : app_logo_black}
                   width="66"
                 // height="60"
