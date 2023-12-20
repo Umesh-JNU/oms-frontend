@@ -98,26 +98,29 @@ const Checkout = () => {
     });
   };
 
+  console.log({ addressCheck })
   const fetchAddress = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(`/api/user/address/${addressCheck}`, {
-        headers: {
-          Authorization: token,
-        },
-      });
+    if (addressCheck) {
+      try {
+        setLoading(true);
+        const { data } = await axios.get(`/api/user/address/${addressCheck}`, {
+          headers: {
+            Authorization: token,
+          },
+        });
 
-      setValues({
-        province: data?.address?.province,
-        town: data?.address?.town,
-        street: data?.address?.street,
-        post_code: data?.address?.post_code,
-      });
-      await fetchDetails();
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      toast.error(error.response.data.error.message, toastOptions);
+        setValues({
+          province: data?.address?.province,
+          town: data?.address?.town,
+          street: data?.address?.street,
+          post_code: data?.address?.post_code,
+        });
+        await fetchDetails();
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        toast.error(error.response.data.error.message, toastOptions);
+      }
     }
   };
 

@@ -42,22 +42,22 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const fetchShippingDetails = async () => {
-    dispatch(shippingDetailsStart());
-    try {
-      const { data } = await axios.get("/api/shipping/all", {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+  // const fetchShippingDetails = async () => {
+  //   dispatch(shippingDetailsStart());
+  //   try {
+  //     const { data } = await axios.get("/api/shipping/all", {
+  //       headers: {
+  //         Authorization: `${token}`,
+  //       },
+  //     });
 
-      dispatch(shippingDetailsSuccess(data?.shippings));
+  //     dispatch(shippingDetailsSuccess(data?.shippings));
 
-      data?.shippings?.map((ship) => formatText(ship));
-    } catch (error) {
-      dispatch(shippingDetailsFailure(error?.response?.data?.error?.message));
-    }
-  };
+  //     data?.shippings?.map((ship) => formatText(ship));
+  //   } catch (error) {
+  //     dispatch(shippingDetailsFailure(error?.response?.data?.error?.message));
+  //   }
+  // };
 
   useEffect(() => {
     getCart(dispatch);
@@ -70,7 +70,7 @@ const Cart = () => {
       setCart(cartItems);
     }
 
-    fetchShippingDetails();
+    // fetchShippingDetails();
   }, [cartItems]);
 
   return (
